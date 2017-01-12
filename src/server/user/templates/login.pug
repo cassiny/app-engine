@@ -1,6 +1,6 @@
 extends ../../templates/basic-layout.pug
 
-block append content
+block append body
   form(method='post', action='/login')
     input(type='email', name='email', placeholder='Email')
     input(type='password', name='password', placeholder='Password')

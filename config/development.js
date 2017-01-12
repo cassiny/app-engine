@@ -8,7 +8,7 @@ module.exports = {
   },
   web: {
     assets: {
-      urlPrefix: 'http://localhost:8080',
+      urlPrefix: 'http://127.0.0.1:8080',
     },
   },
 };

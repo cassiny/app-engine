@@ -27,6 +27,9 @@ mongoose.connect(
 // Instantialize express.
 const app = express();
 
+// Initialize app settings.
+app.set('assets url prefix', config.get('web.assets.urlPrefix'));
+
 // Set Pug as the default view engine.
 app.set('view engine', 'pug');
 app.set('views', __dirname);

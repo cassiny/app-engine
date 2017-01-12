@@ -1,2 +1,2 @@
 # app-engine
-Cassiny AppEngine(a.k.a. CAE) is an open source PaaS platform to build Node.js based web and mobile applications that scale automatically.
+Cassiny AppEngine(CAE) is an open source PaaS platform to build Node.js based web and mobile applications that scale automatically.

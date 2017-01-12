@@ -2,6 +2,10 @@
 Cassiny AppEngine(CAE) is an open source PaaS platform to build Node.js based
 web and mobile applications that scale automatically.
 
+# How to Run
+Please read [How to Run](./docs/developer-guide/how-to-run.md) from the
+[Developer Guide](./docs/developer-guide/README.md).
+
 ## Documents
 
 ### For Users

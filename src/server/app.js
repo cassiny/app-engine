@@ -33,7 +33,7 @@ app.set('assets url prefix', config.get('web.assets.urlPrefix'));
 
 // Set Pug as the default view engine.
 app.set('view engine', 'pug');
-app.set('views', path.resolve(__dirname, './templates'));
+app.set('views', path.resolve(__dirname, './views'));
 
 // Add HTTP body parsers.
 app.use(bodyParser.json());

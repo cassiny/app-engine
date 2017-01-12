@@ -1,0 +1,7 @@
+extends ../../templates/basic-layout.pug
+
+block append content
+  form(method='post', action='/user/login')
+    input(type='email', name='email', placeholder='Email')
+    input(type='password', name='password', placeholder='Password')
+    input(type='submit', name='signIn', value='Sign in')

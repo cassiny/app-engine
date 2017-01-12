@@ -19,8 +19,7 @@ The root folder of browser side source codes of ES6 scripts and assets.
 The root folder of Node.js library in ES6, including business logic and utils.
 
 #### `src/server` Folder
-The root folder of Node.js web server in ES6, including business logic, utils
-and pages.
+The root folder of Node.js web server in ES6, including routes, APIs and pages.
 
 ### `dist` Folder
 The root folder of distribution including both server and browser side codes in

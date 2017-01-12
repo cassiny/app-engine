@@ -1,5 +1,8 @@
-// Cassiny AppEngine's startup scripts
-// in pure ES5 code
+/**
+ *  Cassiny AppEngine's startup scripts in pure ES5 code
+ */
+
+/* eslint-disable */
 
 const env = process.env.NODE_ENV;
 if (env === 'production') {

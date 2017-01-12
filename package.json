@@ -4,8 +4,8 @@
   "description": "Cassiny AppEngine(a.k.a. CAE) is a PaaS platform to build Node.js based web and mobile applications that scale automatically.",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development babel-node index.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "babel-preset-stage-0": "^6.16.0"
   },
   "dependencies": {
+    "cross-env": "^3.1.4",
     "express": "^4.14.0"
   }
 }

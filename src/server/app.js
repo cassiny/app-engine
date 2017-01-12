@@ -1,11 +1,27 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import config from 'config';
+import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
 
+import logger from '../lib/log/logger';
+
 // Initialize passport with our own strategies.
-import '../lib/passport/config';
+import '../lib/db/mongoose/setup';
+import '../lib/passport/setup';
+
+
+// Initialize Mongoose
+const mongoConfig = config.get('db.mongo');
+logger.info(`Connecting to MongoDB(mongodb://${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.database})`);
+mongoose.connect(
+  mongoConfig.host,
+  mongoConfig.database,
+  mongoConfig.port,
+);
+
 
 // Instantialize express.
 const app = express();

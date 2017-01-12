@@ -1,0 +1,1 @@
+import '../../user/model/User';

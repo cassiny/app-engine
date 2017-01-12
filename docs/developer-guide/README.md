@@ -6,5 +6,6 @@ web and mobile applications that scale automatically.
 
 ## Table of Contents
 1. [How to Run](./how-to-run.md)
+1. [Configurations](./configuratns.md)
 1. [Project Structure](./project-structure.md)
 1. [Coding Style](./coding-style.md)

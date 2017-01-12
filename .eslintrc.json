@@ -5,5 +5,10 @@
     "commonjs": true,
     "es6": true,
     "node": true
+  },
+  "rules": {
+    "no-underscore-dangle": [
+      "off"
+    ]
   }
 }

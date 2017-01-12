@@ -35,3 +35,12 @@ npm run build
 
 ### `docs` Folder
 Contains documents of this project.
+
+
+
+## Branches
+### `master` Branch
+The latest stable or ready-to-release version.
+
+### `development` Branch
+The latest stable version under development.

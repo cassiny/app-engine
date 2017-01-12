@@ -20,7 +20,7 @@
     "docker"
   ],
   "author": "cassiny",
-  "license": "MIT",
+  "license": "GPL",
   "bugs": {
     "url": "https://github.com/cassiny/app-engine/issues"
   },

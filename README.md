@@ -8,10 +8,10 @@ Please read [How to Run](./docs/developer-guide/how-to-run.md) from the
 
 ## Documents
 
-### For Users
+### For CAE End Users
 + Please read our [User Manual](./docs/user-manual/README.md)
 
-### For Developers
+### For CAE Developers and Contributors
 + Please read our [Developer Guide](./docs/developer-guide/README.md)
 
 ## License

@@ -1,7 +1,17 @@
 extends ../../templates/basic-layout.pug
 
+block append styles
+  link(rel='stylesheet', href=app.get('assets url prefix') + '/login/res/min.css')
+
 block append body
-  form(method='post', action='/login')
-    input(type='email', name='email', placeholder='Email')
-    input(type='password', name='password', placeholder='Password')
-    input(type='submit', name='signIn', value='Sign in')
+  .container
+    form.login-form(method='post', action='/login', accept-charset='UTF-8')
+      h2 Sign in to Cassiny
+      .form-group
+        label(for='emailField') Email address:
+        input.form-control(type='email', id='emailField', name='email')
+      .form-group
+        label(for='passwordField') Password:
+        input.form-control(type='password', id='passwordField', name='password')
+      input.btn.btn-primary.btn-block(type='submit', name='signIn', value='Sign in')
+      p.join New to Cassiny? <a href='/join'>Create an account</a>.

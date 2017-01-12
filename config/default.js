@@ -6,4 +6,9 @@ module.exports = {
       database: null,
     },
   },
+  web: {
+    assets: {
+      urlPrefix: null,
+    },
+  },
 };

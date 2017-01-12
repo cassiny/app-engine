@@ -9,31 +9,31 @@ cassiny
     |__ src
 ```
 
+
 ### `src` Folder
 The root folder of all source codes.
-
 #### `src/client` Folder
-The root folder of browser side source codes of ES6 scripts and assets.
-
+Browser side source codes of ES6 scripts and assets.
 #### `src/lib` Folder
-The root folder of Node.js library in ES6, including business logic and utils.
-
+Node.js library in ES6, including business logic and utils.
 #### `src/server` Folder
-The root folder of Node.js web server in ES6, including routes, APIs and pages.
+Node.js web server in ES6, including routes, APIs and pages.
+
 
 ### `dist` Folder
-The root folder of distribution including both server and browser side codes in
-pure ES5, as well as related resources like CSS.
-In the distributed version, there's no need for installing Babel, Webpack or
-other devDependencies.
+Distributed codes and assets of both server and browser sides.
+#### `dist/assets`
+Distributed ES5 codes and assets of browser side. The assets should be run as a
+cookie-less static web server or uploaded to CDN server.
+#### `dist/lib`
+Distributed ES5 codes of Node.js library.
+#### `dist/server`
+Distributed ES5 codes of Node.js web server.
 
-Use the following command to build the project:
-```sh
-npm run build
-```
 
 ### `docs` Folder
 Contains documents of this project.
+
 
 
 

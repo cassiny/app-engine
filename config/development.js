@@ -6,4 +6,9 @@ module.exports = {
       database: 'cassiny-app-engine',
     },
   },
+  web: {
+    assets: {
+      urlPrefix: 'http://localhost:8080',
+    },
+  },
 };

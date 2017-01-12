@@ -52,7 +52,7 @@ app.use(passport.session());
 
 // Routers
 app.use((req, res, next) => {
-  if (req.path === '/login' || req.path.startsWith('/assets/') || req.isAuthenticated()) {
+  if (req.path === '/login' || req.isAuthenticated()) {
     next();
   } else {
     res.redirect(`/login?redirect_url=${encodeURIComponent(req.url)}`);

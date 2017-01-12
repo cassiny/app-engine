@@ -5,6 +5,7 @@ import config from 'config';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import path from 'path';
 import session from 'express-session';
 
 import logger from '../lib/log/logger';
@@ -32,7 +33,7 @@ app.set('assets url prefix', config.get('web.assets.urlPrefix'));
 
 // Set Pug as the default view engine.
 app.set('view engine', 'pug');
-app.set('views', __dirname);
+app.set('views', path.resolve(__dirname, './templates'));
 
 // Add HTTP body parsers.
 app.use(bodyParser.json());
@@ -63,6 +64,5 @@ app.use((req, res, next) => {
 });
 
 app.use('/', require('./routes').default);
-app.use('/', require('./user/routes').default);
 
 export default app;

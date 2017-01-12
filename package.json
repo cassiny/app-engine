@@ -39,6 +39,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "normalize.css": "^5.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
   },

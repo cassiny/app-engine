@@ -10,6 +10,10 @@ import '../lib/passport/config';
 // Instantialize express.
 const app = express();
 
+// Set Pug as the default view engine.
+app.set('view engine', 'pug');
+app.set('views', __dirname);
+
 // Add HTTP body parsers.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,9 +30,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-  res.type('html');
-  res.send('<h1>Welcome</h1><p>Welcome to Cassiny AppEngine</p>');
-});
+// Routers
+app.use('/', require('./user/routes').default);
 
 export default app;

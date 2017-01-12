@@ -1,0 +1,26 @@
+{
+    "name": "cassiny-app-engine",
+    "version": "0.1.0",
+    "description": "Cassiny AppEngine(a.k.a. CAE) is a PaaS platform to build Node.js based web and mobile applications that scale automatically.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cassiny/app-engine.git"
+    },
+    "keywords": [
+        "cassiny",
+        "app-engine",
+        "paas",
+        "cloud",
+        "docker"
+    ],
+    "author": "cassiny",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/cassiny/app-engine/issues"
+    },
+    "homepage": "https://github.com/cassiny/app-engine#readme"
+}

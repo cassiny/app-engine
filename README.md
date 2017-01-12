@@ -13,3 +13,6 @@ Please read [How to Run](./docs/developer-guide/how-to-run.md) from the
 
 ### For Developers
 + Please read our [Developer Guide](./docs/developer-guide/README.md)
+
+## License
+GNU Gernal Public(GPL) License v3.0

@@ -1,14 +1,11 @@
 // Cassiny AppEngine's startup scripts
 // in pure ES5 code
 
-var env = process.env.NODE_ENV;
-if (env === 'production')
-{
+const env = process.env.NODE_ENV;
+if (env === 'production') {
   console.info('Cassiny AppEngine server is now starting in [PRODUCTION] mode...');
   require('./dist/server');
-}
-else
-{
+} else {
   console.info('Cassiny AppEngine server is now starting in [DEVELOPMENT] mode...');
   require('./src/server');
 }

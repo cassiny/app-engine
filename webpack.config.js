@@ -7,10 +7,11 @@ module.exports = {
   entry: {
     vendor: ['babel-polyfill', 'jquery'],
     common: ['./common/res/index.less'],
+    login: ['./login/res/index.less'],
   },
   resolve: {
     alias: {
-      'normalize.css': path.resolve('./node_modules/normalize.css/normalize.css'),
+      bootstrap: path.resolve('./node_modules/bootstrap'),
       common: path.resolve('./src/client/common'),
     },
   },

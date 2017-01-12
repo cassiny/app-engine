@@ -13,6 +13,7 @@ module.exports = {
     alias: {
       bootstrap: path.resolve('./node_modules/bootstrap'),
       common: path.resolve('./src/client/common'),
+      'variables.less': path.resolve('./src/client/common/res/variables.less'),
     },
   },
   output: {

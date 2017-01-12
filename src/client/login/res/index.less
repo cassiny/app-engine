@@ -1,3 +1,5 @@
+@import '~variables.less';
+
 body {
   background: #efefef;
   margin-top: 100px;
@@ -7,12 +9,12 @@ body {
   max-width: 540px;
   margin: auto;
   background: white;
-  border: 1px solid silver;
-  border-radius: 8px;
-  padding-top: 42px;
+  border: 1px solid @input-border;
+  border-radius: @border-radius-large;
 
   h2 {
     text-align: center;
+    margin-top: 42px;
     margin-bottom: 42px;
   }
 

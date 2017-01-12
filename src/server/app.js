@@ -31,6 +31,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routers
+app.use((req, res, next) => {
+  if (req.path === '/login' || req.path.startsWith('/assets/') || req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect(`/login?redirect_url=${encodeURIComponent(req.url)}`);
+  }
+});
+
+app.use('/', require('./routes').default);
 app.use('/', require('./user/routes').default);
 
 export default app;

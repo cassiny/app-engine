@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import config from 'config';
+import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
@@ -36,10 +37,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Add cookie and session support.
 app.use(cookieParser());
+// Use MongoDB to store session.
+const MongoStore = connectMongo(session);
 app.use(session({
   secret: 'i$love%cassiny!',
   resave: false,
   saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }));
 
 // Initialize passport.

@@ -1,7 +1,7 @@
 extends basic-layout.pug
 
 block append body
-  nav.navbar.navbar-default.navbar-static-top
+  #page-navbar.nav.navbar.navbar-default.navbar-static-top
     .container
       .navbar-header
         a.navbar-brand(href='/') AppEngine
@@ -12,5 +12,4 @@ block append body
         if req.user
           li
             a(href='javascript:void(0)')= req.user.nickname
-  .container
-    block content
+  block content

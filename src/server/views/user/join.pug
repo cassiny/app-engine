@@ -3,6 +3,9 @@ extends ../page-layout.pug
 block append styles
   link(rel='stylesheet', href=app.getAssetUrl('/join/res/min.css'))
 
+block append scripts
+  script(src=app.getAssetUrl('/join/min.js'))
+
 block append content
   .main.container
     h1 Join Cassiny

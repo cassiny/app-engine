@@ -3,6 +3,9 @@ extends ../basic-layout.pug
 block append styles
   link(rel='stylesheet', href=app.getAssetUrl('/login/res/min.css'))
 
+block append scripts
+  script(src=app.getAssetUrl('/login/min.js'))
+
 block append body
   .container
     form.login-form(method='post', action='/login', accept-charset='UTF-8')

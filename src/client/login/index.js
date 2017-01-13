@@ -1,7 +1,5 @@
 import Joi from 'joi';
 
-const fields = ['loginName', 'password'];
-
 const schema = Joi.object().keys({
   loginName: Joi.string().min(3).max(30).required(),
   password: Joi.string().min(5).required(),

@@ -5,18 +5,18 @@ block append styles
 
 block append content
   .main.container
+    h1 Join Cassiny
+    p.title The best way to build and delopy app engine
     form.join-form(method='post', action='/join', accept-charset='UTF-8')
-      h1 Join Cassiny
-      p.title The best way to build and delopy app engine
       .join-form-groups
         h4 Create your personal account
         #emailGroup.form-group
           label.control-label(for='emailField') Email
-          input.form-control(type='email', id='emailField', name='join_email', autofocus, autocomplete='off')
+          input.form-control(type='email', id='emailField', name='email', autofocus, autocomplete='off')
           .help-block You will occasionally receive account related emails. We promise not to share your email with anyone.
         #usernameGroup.form-group
           label.control-label(for='usernameField') Username
-          input.form-control(type='text', id='usernameField', name='join_username', autocomplete='off')
+          input.form-control(type='text', id='usernameField', name='username', autocomplete='off')
           .help-block This will be your username — you can enter your organization’s username next.
         #passwordGroup.form-group
           label.control-label(for='passwordField') Password

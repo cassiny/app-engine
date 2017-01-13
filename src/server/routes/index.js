@@ -8,7 +8,11 @@ router.use('/', require('./user').default);
 router.use('/api', require('../api').default);
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Welcome', app, user: req.user });
+  if (!req.user) {
+    res.render('welcome', { title: 'Welcome', app, req });
+  } else {
+    res.render('spa', { title: 'AppEngine', app, req });
+  }
 });
 
 export default router;

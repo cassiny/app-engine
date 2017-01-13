@@ -1,8 +1,9 @@
 class CassiniyError extends Error {
 
 
-  constructor(code, message) {
+  constructor(code, type, message) {
     super(message);
+    this.type = type;
     this.code = code;
   }
 
@@ -13,15 +14,13 @@ class CassiniyError extends Error {
   { type: 'UNHANDLE_ERROR', code: 0 },
 
   // server side - client visible errors.
-  { type: 'USERNAME_ALREADY_EXIST', code: 1001 },
-  { type: 'EMAIL_ALREADY_EXIST', code: 1002 },
+  { type: 'INVALID_REGISTRATION', code: 1001 },
+  { type: 'USERNAME_ALREADY_EXIST', code: 1002 },
+  { type: 'EMAIL_ALREADY_EXIST', code: 1003 },
 
 ].forEach((errorType) => {
   Object.defineProperty(exports, errorType.type, {
-    get: () => new CassiniyError(errorType.code, errorType.type),
+    get: () => CassiniyError.bind(errorType.code, errorType.type),
     configurable: false,
   });
 });
-
-
-

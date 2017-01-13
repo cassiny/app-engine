@@ -11,12 +11,4 @@ if (env === 'production') {
 } else {
   console.info('Cassiny AppEngine server is now starting in [DEVELOPMENT] mode...');
   require('./src/server');
-
-  console.info('Starting webpack-dev-server at HTTP 8080...');
-  const WebpackDevServer = require('webpack-dev-server');
-  const webpack = require('webpack');
-  const webpackConfig = require('./webpack.config');
-  const webpackCompiler = webpack(webpackConfig);
-  const webpackDevServer = new WebpackDevServer(webpackCompiler, webpackConfig.devServer);
-  webpackDevServer.listen(8080);
 }

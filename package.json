@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
-    "dev": "cross-env NODE_ENV=development babel-node index.js",
+    "dev-server": "cross-env NODE_ENV=development babel-node index.js",
+    "dev-client": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "babel ./src/server -d ./dist/server && babel ./src/lib -d ./dist/lib"
   },
   "repository": {

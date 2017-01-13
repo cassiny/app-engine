@@ -6,7 +6,6 @@ const schema = new mongoose.Schema({
   email: { type: String, index: true },
   password: { type: String },
   registerTime: { type: Date, default: Date.now },
-  lastLoginTime: { type: Date, default: Date.now },
 }, {
   collection: 'user',
 });

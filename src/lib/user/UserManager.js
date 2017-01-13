@@ -21,7 +21,7 @@ const userSchema = {
                .required(),
 
 
-  email: Joi.string().email().rquired(),
+  email: Joi.string().email().required(),
 };
 
 

@@ -17,7 +17,6 @@ $(document).ready(() => {
     }
 
     // Go on
-    console.log(result.value);
     return true;
   });
 
@@ -27,8 +26,7 @@ $(document).ready(() => {
 
     if (!result.ok && result.value.length > 0) {
       showError($(`#${currentFieldName}Group`), generateInfo(result.value[0].message, result.value[0].field));
-    }
-    else {
+    } else {
       hideError($(`#${currentFieldName}Group`));
     }
   });
@@ -58,12 +56,8 @@ function validate(fieldsForValidation) {
   }
 
   // Format error message
-  const temp = validationsResult.error.details.map((obj) => {
-    return {
-      field: obj.path,
-      message: obj.message,
-    };
-  });
+  const temp = validationsResult.error.details
+                .map(obj => ({ field: obj.path, message: obj.message }));
 
   const result = temp.filter(obj => ffv.indexOf(obj.field) > -1);
 

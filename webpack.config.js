@@ -7,11 +7,13 @@ module.exports = {
   entry: {
     vendor: ['babel-polyfill', 'jquery'],
     common: ['./common/res/index.less'],
-    login: ['./login/res/index.less'],
+    login: ['./login/index.js', './login/res/index.less'],
+    join: ['./join/index.js', './join/res/index.less'],
   },
   resolve: {
     alias: {
       bootstrap: path.resolve('./node_modules/bootstrap'),
+      joi: 'joi-browser',
       common: path.resolve('./src/client/common'),
       'variables.less': path.resolve('./src/client/common/res/variables.less'),
     },

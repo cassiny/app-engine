@@ -16,8 +16,10 @@ const userSchema = {
   //   and cannot begin or end with a hyphen.
   // - length shoudl between 3 and 30
   username: Joi.string()
+               .lowercase()
                .regex(/^\w+-?\w+(?!-)$/)
-               .min(3).max(30)
+               .min(3)
+               .max(30)
                .required(),
 
 
@@ -26,6 +28,7 @@ const userSchema = {
 
 
 export default class UserManager {
+
   static async registerUser(
     email,
     password,

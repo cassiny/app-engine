@@ -21,4 +21,8 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+router.get('/join', (req, res) => {
+  res.render('user/join', { title: 'Join', app });
+});
+
 export default router;

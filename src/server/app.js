@@ -56,7 +56,7 @@ app.use(passport.session());
 
 // Routers
 app.use((req, res, next) => {
-  if (req.path === '/login' || req.isAuthenticated()) {
+  if (['/login', '/join'].indexOf(req.path) !== -1 || req.isAuthenticated()) {
     next();
   } else {
     res.redirect(`/login?redirect_url=${encodeURIComponent(req.url)}`);

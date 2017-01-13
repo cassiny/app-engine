@@ -46,8 +46,13 @@ export default class UserManager {
     return user;
   }
 
-  static async verifyEmailPassword(email, password) {
-    const user = await this.getUserByEmail(email);
+  static async verifyPassword(loginName, password) {
+    let user = null;
+    if (loginName.includes('@')) {
+      user = await this.getUserByEmail(loginName);
+    } else {
+      user = await this.getUserByUsername(loginName);
+    }
     if (user) {
       if (user.password === UserManager.encryptPassword(password)) {
         return user;

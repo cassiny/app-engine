@@ -15,12 +15,12 @@ UserManager.getUserByEmail('admin@cassiny.org').then((user) => {
 });
 
 passport.use(new LocalStrategy({
-  usernameField: 'email',
+  usernameField: 'login_name',
   passwordField: 'password',
   passReqToCallback: true,
   session: true,
-}, async (req, email, password, done) => {
-  const user = await UserManager.verifyEmailPassword(email, password);
+}, async (req, loginName, password, done) => {
+  const user = await UserManager.verifyPassword(loginName, password);
   if (user) {
     const userIdentity = new UserIdentity({
       id: user.id,

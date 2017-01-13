@@ -38,20 +38,20 @@ export default class UserManager {
     // Add registeration info verification, including
     const validateResult = Joi.validate({ email, password, username }, registerUserSchema);
     if (validateResult.error !== null) {
-      logger.info(`Invalid register user arguments : ${validateResult.error.name}`);
-      throw validateResult.error;
+      logger.warn(`Invalid register user arguments: ${validateResult.error.name}`);
+      throw CassinyError.INVALID_REGISTRATION(validateResult.error.message);
     }
 
     // Check duplicated email
     const existedEmailUser = await User.findOneByEmail(email);
     if (existedEmailUser !== null) {
-      throw CassinyError.EMAIL_ALREADY_EXIST;
+      throw CassinyError.EMAIL_ALREADY_EXIST('Email address has already been taken.');
     }
 
     // check duplicated username
     const existedUsernameUser = await User.findOneByUsername(username);
     if (existedUsernameUser !== null) {
-      throw CassinyError.USERNAME_ALREADY_EXIST;
+      throw CassinyError.USERNAME_ALREADY_EXIST('Username has already been taken.');
     }
 
     const user = new User({

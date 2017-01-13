@@ -11,6 +11,8 @@ block append body
     form.login-form(method='post', action='/login', accept-charset='UTF-8')
       h2 Sign in to Cassiny
       .login-form-groups
+        if error
+          .alert.alert-danger= error
         #loginNameGroup.form-group
           label.control-label(for='loginNameField') Username or email address:
           input.form-control(type='text', id='loginNameField', name='login_name', value='admin@cassiny.org', autofocus, autocomplete='off')

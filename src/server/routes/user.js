@@ -8,11 +8,12 @@ import logger from './../../lib/log/logger';
 const router = Router();
 
 router.get('/login', (req, res) => {
-  res.render('user/login', { title: 'Sign in', app });
+  const error = req.flash('error')[0];
+  res.render('user/login', { title: 'Sign in', app, error });
 });
 
 router.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
   (req, res) => {
     // If successfully signed in
     res.redirect('/');

@@ -30,7 +30,7 @@ passport.use(new LocalStrategy({
     });
     done(null, userIdentity);
   } else {
-    done(null, false);
+    done(null, false, 'Invalid username or password.');
   }
 }));
 

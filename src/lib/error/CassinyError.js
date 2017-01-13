@@ -1,12 +1,10 @@
-class CassiniyError extends Error {
-
-
+export default class CassinyError extends Error {
   constructor(code, type, message) {
     super(message);
     this.type = type;
     this.code = code;
+    this.isClientError = this.code > 1000;
   }
-
 }
 
 [
@@ -18,9 +16,6 @@ class CassiniyError extends Error {
   { type: 'USERNAME_ALREADY_EXIST', code: 1002 },
   { type: 'EMAIL_ALREADY_EXIST', code: 1003 },
 
-].forEach((errorType) => {
-  Object.defineProperty(exports, errorType.type, {
-    get: () => CassiniyError.bind(errorType.code, errorType.type),
-    configurable: false,
-  });
+].forEach((err) => {
+  CassinyError[err.type] = (message) => new CassinyError(err.code, err.type, message);
 });

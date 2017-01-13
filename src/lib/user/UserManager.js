@@ -29,11 +29,11 @@ const userSchema = {
 
 export default class UserManager {
 
-  static async registerUser(
+  static async registerUser({
     email,
     password,
     username,
-  ) {
+  }) {
     const registerUserSchema = Joi.object().keys(userSchema);
     // Add registeration info verification, including
     const validateResult = Joi.validate({ email, password, username }, registerUserSchema);

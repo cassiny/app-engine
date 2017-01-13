@@ -10,6 +10,8 @@ block append content
     form.join-form(method='post', action='/join', accept-charset='UTF-8')
       .join-form-groups
         h4 Create your personal account
+        if error
+          .alert.alert-danger= error
         #emailGroup.form-group
           label.control-label(for='emailField') Email
           input.form-control(type='email', id='emailField', name='email', autofocus, autocomplete='off')

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import config from 'config';
 import connectMongo from 'connect-mongo';
+import flash from 'connect-flash';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import path from 'path';
@@ -45,10 +46,13 @@ app.use(cookieParser());
 const MongoStore = connectMongo(session);
 app.use(session({
   secret: 'i$love%cassiny!',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }));
+
+// Add connect-flash middleware.
+app.use(flash());
 
 // Initialize passport.
 app.use(passport.initialize());

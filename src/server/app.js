@@ -65,4 +65,9 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routes').default);
 
+app.getAssetUrl = function getAssetUrl(relPath) {
+  const prefix = app.get('assets url prefix');
+  return `${prefix}${relPath}`;
+};
+
 export default app;

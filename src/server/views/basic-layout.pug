@@ -7,8 +7,8 @@ html
     meta(name='viewport', content='initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no')
     title= title + ' - Cassiny AppEngine'
     block styles
-      link(rel='stylesheet', href=app.get('assets url prefix') + '/common/res/min.css')
+      link(rel='stylesheet', href=app.getAssetUrl('/common/res/min.css'))
     block scripts
-      script(src=app.get('assets url prefix') + '/vendor/min.js')
+      script(src=app.app.getAssetUrl('/vendor/min.js'))
   body
     block body

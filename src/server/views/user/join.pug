@@ -4,21 +4,23 @@ block append styles
   link(rel='stylesheet', href=app.getAssetUrl('/join/res/min.css'))
 
 block append content
-  from.join-form(method='post', action='/join', accept-charset='UTF-8')
-    h1 Join cassiny
-    p The best way to build and delopy app engine
-    .join-form-groups
-      #emailGroup.form-group
-        label.control-label(for='emailField') Email
-        input.form-control(type='text', id='emailField', name='join_email', autofocus, autocomplete='off')
-        .help-block
-      #usernameGroup.form-group
-        label.control-label(for='usernameField') Username
-        input.form-control(type='text', id='usernameField', name='join_username', autofocus, autocomplete='off')
-        .help-block
-      #passwordGroup.form-group
-        label.control-label(for='passwordField') Password:
-        input.form-control(type='password', id='passwordField', name='password')
-        .help-blocks
-      input.btn.btn-primary.btn-block(type='submit', name='Join', value='Join us')
-    p.login Have an account already? <a href='/login'>Login</a>.
+  .main.container
+    from.join-form(method='post', action='/join', accept-charset='UTF-8')
+      h1 Join Cassiny
+      p.title The best way to build and delopy app engine
+      .join-form-groups
+        h4 Create your personal account
+        #emailGroup.form-group
+          label.control-label(for='emailField') Email
+          input.form-control(type='email', id='emailField', name='join_email', autofocus, autocomplete='off')
+          .help-block You will occasionally receive account related emails. We promise not to share your email with anyone.
+        #usernameGroup.form-group
+          label.control-label(for='usernameField') Username
+          input.form-control(type='text', id='usernameField', name='join_username', autocomplete='off')
+          .help-block This will be your username — you can enter your organization’s username next.
+        #passwordGroup.form-group
+          label.control-label(for='passwordField') Password
+          input.form-control(type='password', id='passwordField', name='password')
+          .help-blocks Use at least one lowercase letter, one numeral, and seven characters.
+        input.btn.btn-primary.btn-block(type='submit', name='Join', value='Join us')
+      p.login-hint Have an account already? <a href='/login'>Login</a>.

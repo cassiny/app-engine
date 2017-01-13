@@ -3,16 +3,25 @@ extends ../basic-layout.pug
 block append styles
   link(rel='stylesheet', href=app.getAssetUrl('/login/res/min.css'))
 
+block append scripts
+  script(src=app.getAssetUrl('/login/min.js'))
+
 block append body
   .container
     form.login-form(method='post', action='/login', accept-charset='UTF-8')
       h2 Sign in to Cassiny
       .login-form-groups
-        .form-group
-          label(for='loginNameField') Username or email address:
-          input.form-control(type='text', id='loginNameField', name='login_name', value='admin@cassiny.org', autofocus)
-        .form-group
-          label(for='passwordField') Password:
-          input.form-control(type='password', id='passwordField', name='password', value='admin')
+        if info
+          .alert.alert-info= info
+        if error
+          .alert.alert-danger= error
+        #loginNameGroup.form-group
+          label.control-label(for='loginNameField') Username or email address:
+          input.form-control(type='text', id='loginNameField', name='login_name', value=req.flash('loginName')[0], autofocus, autocomplete='off')
+          .help-block
+        #passwordGroup.form-group
+          label.control-label(for='passwordField') Password
+          input.form-control(type='password', id='passwordField', name='password', value='')
+          .help-block
         input.btn.btn-primary.btn-block(type='submit', name='signIn', value='Sign in')
-      p.join New to Cassiny? <a href='/join'>Create an account</a>.
+      p.join-hint New to Cassiny? <a href='/join'>Create an account</a>.

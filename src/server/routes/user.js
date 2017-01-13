@@ -22,7 +22,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/join', (req, res) => {
-  res.render('user/join', { title: 'Join', app });
+  res.render('user/join', { title: 'Join', req, app });
 });
 
 export default router;

@@ -4,6 +4,13 @@ block append body
   nav.navbar.navbar-default.navbar-static-top
     .container
       .navbar-header
-        a.navbar-brand(href='/') Cassiny AppEngine
+        a.navbar-brand(href='/') AppEngine
+      ul.nav.navbar-nav
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='javascript:void(0)') Create
+        if req.user
+          li
+            a(href='javascript:void(0)')= req.user.nickname
   .container
     block content

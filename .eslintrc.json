@@ -13,8 +13,5 @@
     "no-use-before-define": [
       "off"
     ]
-  },
-  "globals": {
-    "$": true
   }
 }

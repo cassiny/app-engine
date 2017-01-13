@@ -41,6 +41,11 @@ export default class UserManager {
     return user;
   }
 
+  static async getUserByUsername(username) {
+    const user = await User.findOneByUsername(username);
+    return user;
+  }
+
   static async verifyEmailPassword(email, password) {
     const user = await this.getUserByEmail(email);
     if (user) {

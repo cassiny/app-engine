@@ -14,4 +14,8 @@ schema.statics.findOneByEmail = function findOneByEmail(email, cb) {
   return this.findOne({ email: email.toLowerCase() }, cb);
 };
 
+schema.statics.findOneByUsername = function findOneByUsername(username, cb) {
+  return this.findOne({ username: username.toLowerCase() }, cb);
+};
+
 export default mongoose.model('User', schema);

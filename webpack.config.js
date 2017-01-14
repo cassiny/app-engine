@@ -6,9 +6,12 @@ module.exports = {
   context: path.resolve('./src/client'),
   entry: {
     vendor: ['babel-polyfill', 'jquery'],
+
     common: ['./common/res/index.less'],
+
     login: ['./login/index.js', './login/res/index.less'],
     join: ['./join/index.js', './join/res/index.less'],
+    welcome: ['./welcome/res/index.less'],
   },
   resolve: {
     alias: {
@@ -21,7 +24,7 @@ module.exports = {
   output: {
     path: path.resolve('./dist/assets'),
     publicPath: '/',
-    filename: '[name]/min.js',
+    filename: './js/[name].min.js',
   },
   devServer: {
     contentBase: path.resolve('../dist/assets'),
@@ -45,17 +48,21 @@ module.exports = {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
       },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=10240&name=images/[name].[hash].[ext]&outputPath=/images/',
+      },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('./[name]/res/min.css'),
+    new ExtractTextPlugin('./css/[name].min.css'),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor/min.js',
+      filename: './js/vendor.min.js',
       minChunks: Infinity,
     }),
   ],

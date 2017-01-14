@@ -1,19 +1,19 @@
 extends basic-layout.pug
 
 block append body
-  header#page-header.nav.navbar.navbar-default.navbar-static-top
+  header.page-header.nav.navbar.navbar-default.navbar-static-top
     .container
       .navbar-header
         a.navbar-brand(href='/') AppEngine
 
       if req.user
-        ul#page-nav-navbar.nav.navbar-nav.navbar-right
+        ul.page-nav-navbar.nav.navbar-nav.navbar-right
           li
             a(href='javascript:void(0)') Create
           li
             a(href='javascript:void(0)')= req.user.nickname
       else
-        #page-navbar-right.navbar-right
+        .page-navbar-right.navbar-right
           if (req.path !== '/login')
             a.btn.btn-default(href='/login', role='button') Sign in
           if (req.path !== '/join')

@@ -1,13 +1,16 @@
 extends ../page-layout.pug
 
 block append styles
-  link(rel='stylesheet', href=app.getAssetUrl('/join/res/min.css'))
+  link(rel='stylesheet', href=app.getAssetUrl('/css/join.min.css'))
+
+block append scripts
+  script(src=app.getAssetUrl('/js/join.min.js'))
 
 block append content
   .main.container
     h1 Join Cassiny
     p.title The best way to build and delopy app engine
-    form.join-form(method='post', action='/join', accept-charset='UTF-8')
+    form.join-form(method='post', action='/join', accept-charset='UTF-8', novalidate)
       .join-form-groups
         h4 Create your personal account
         if error

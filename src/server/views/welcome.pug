@@ -1,5 +1,8 @@
 extends page-layout.pug
 
+block append styles
+  link(rel='stylesheet', href=app.getAssetUrl('/css/welcome.min.css'))
+
 block append content
   .jumbotron
     .container

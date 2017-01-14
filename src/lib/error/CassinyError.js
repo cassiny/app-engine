@@ -1,10 +1,12 @@
-export default class CassinyError extends Error {
+class CassinyError extends Error {
+
   constructor(code, type, message) {
     super(message);
     this.type = type;
     this.code = code;
     this.isClientError = this.code > 1000;
   }
+
 }
 
 [
@@ -17,5 +19,7 @@ export default class CassinyError extends Error {
   { type: 'EMAIL_ALREADY_EXIST', code: 1003 },
 
 ].forEach((err) => {
-  CassinyError[err.type] = (message) => new CassinyError(err.code, err.type, message);
+  CassinyError[err.type] = message => new CassinyError(err.code, err.type, message);
 });
+
+export default CassinyError;

@@ -1,9 +1,16 @@
 import Joi from 'joi';
 
 const schema = Joi.object().keys({
-  email: Joi.string().email().required(),
-  username: Joi.string().min(3).max(30).required(),
-  password: Joi.string().min(5).required(),
+  email: Joi.string()
+            .email()
+            .required(),
+  username: Joi.string()
+                .min(3)
+                .max(30)
+                .token(),
+  password: Joi.string()
+                .min(5)
+                .token(),
 });
 
 $(document).ready(() => {
@@ -61,7 +68,16 @@ function validate(fieldsForValidation) {
   const temp = validationsResult.error.details
                 .map(obj => ({ field: obj.path, message: obj.message }));
 
-  const result = temp.filter(obj => ffv.indexOf(obj.field) > -1);
+  const result = [];
+  const fieldsHasAdded = [];
+  temp.filter(obj => ffv.indexOf(obj.field) > -1)
+      .forEach((val) => {
+        if (fieldsHasAdded.indexOf(val.field) === -1) {
+          fieldsHasAdded.push(val.field);
+          result.push(val);
+        }
+      });
+  console.log(result);
 
   return {
     ok: false,

@@ -2,6 +2,7 @@ import agent from './../agent';
 
 const login = '/login';
 const logout = '/logout';
+const logoutAction = () => agent.get(logout);
 
 describe('GET /login', () => {
   it('page should be ok', (done) => {
@@ -17,9 +18,11 @@ describe('GET /login', () => {
 });
 
 
+
 describe('POST /login', () => {
   describe('admin login', () => {
-    beforeEach(() => agent.get(logout));
+    beforeEach(logoutAction);
+    after(logoutAction);
 
     it('should remain when username is incorrect', (done) => {
       agent
@@ -28,7 +31,7 @@ describe('POST /login', () => {
           password: 'admin',
           login_name: 'Admin3',
         })
-        .expect(res => res.statusCode.should.be.eql(302))
+        .expect(302)
         .expect('Location', login)
         .end(done);
     });
@@ -40,7 +43,7 @@ describe('POST /login', () => {
           password: 'admin3',
           login_name: 'Admin',
         })
-        .expect(res => res.statusCode.should.be.eql(302))
+        .expect(302)
         .expect('Location', login)
         .end(done);
     });
@@ -52,7 +55,7 @@ describe('POST /login', () => {
           password: 'admin',
           login_name: 'Admin',
         })
-        .expect(res => res.statusCode.should.be.oneOf([200, 302]))
+        .expect(302)
         .expect('Location', '/')
         .expect(res =>
           res.text.includes('Sign in').should.be.false(),

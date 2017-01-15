@@ -26,7 +26,7 @@ describe('POST /login', () => {
         .post(login)
         .send({
           password: 'admin',
-          username: 'Admin3',
+          login_name: 'Admin3',
         })
         .expect(res => res.statusCode.should.be.eql(302))
         .expect('Location', login)
@@ -38,7 +38,7 @@ describe('POST /login', () => {
         .post(login)
         .send({
           password: 'admin3',
-          username: 'Admin',
+          login_name: 'Admin',
         })
         .expect(res => res.statusCode.should.be.eql(302))
         .expect('Location', login)
@@ -49,11 +49,11 @@ describe('POST /login', () => {
       agent
         .post(login)
         .send({
-          email: 'admin@cassiny.org',
           password: 'admin',
-          username: 'Admin',
+          login_name: 'Admin',
         })
         .expect(res => res.statusCode.should.be.oneOf([200, 302]))
+        .expect('Location', '/')
         .expect(res =>
           res.text.includes('Sign in').should.be.false(),
          )

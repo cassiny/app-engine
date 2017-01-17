@@ -11,17 +11,14 @@ import BuildHistoryTabPage from '../tab/BuildHistoryTabPage';
 import DashboardTabPage from '../tab/DashboardTabPage';
 import SettingsTabPage from '../tab/SettingsTabPage';
 
-import UserService from '../../common/user/service/UserService';
-import ProjectService from '../service/ProjectService';
-
 export default class ProjectDetailApp extends Component {
   static contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
 
   static propTypes = {
     children: PropTypes.element.isRequired,
-    params: PropTypes.shape({ username: PropTypes.string, path: PropTypes.string }).isRequired,
+    params: PropTypes.shape({ username: PropTypes.string, path: PropTypes.string }).isRequired
   };
 
   render() {
@@ -31,9 +28,9 @@ export default class ProjectDetailApp extends Component {
     const tabs = [
       { name: 'Dashboard', path: `/project/${projectPath}`, isIndex: true },
       { name: 'Build History', path: `/project/${projectPath}/builds` },
-      { name: 'Settings', path: `/project/${projectPath}/settings` },
+      { name: 'Settings', path: `/project/${projectPath}/settings` }
     ].map(tab => Object.assign({}, tab, {
-      isActive: this.context.router.isActive(tab.path, tab.isIndex),
+      isActive: this.context.router.isActive(tab.path, tab.isIndex)
     }));
     return (
       <div className="project-header">
@@ -48,7 +45,6 @@ export default class ProjectDetailApp extends Component {
 
 
 $(() => {
-  console.log(UserService.getCurrentUser());
 
   render(
     <Router history={browserHistory}>

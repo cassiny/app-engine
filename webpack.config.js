@@ -13,7 +13,7 @@ module.exports = {
     join: ['./user/join/index.js', './user/join/res/index.less'],
     welcome: ['./welcome/res/index.less'],
 
-    'project-detail-app': ['./project/app/ProjectDetailApp.jsx'],
+    'project-detail-app': ['./project/app/ProjectDetailApp.jsx', './project/res/index.less'],
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],

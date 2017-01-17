@@ -15,6 +15,10 @@ import logger from '../lib/log/logger';
 import '../lib/db/mongoose/setup';
 import '../lib/passport/setup';
 
+// global error handlers
+import errorLogHandler from '../lib/error/errorLogHandler';
+import clientErrorHandler from '../lib/error/clientErrorHandler';
+import internalErrorHandler from '../lib/error/internalErrorHandler';
 
 // Initialize Mongoose
 const mongoConfig = config.get('db.mongo');
@@ -73,5 +77,9 @@ app.getAssetUrl = function getAssetUrl(relPath) {
   const prefix = app.get('assets url prefix');
   return `${prefix}${relPath}`;
 };
+
+app.use(errorLogHandler());
+app.use(clientErrorHandler());
+app.use(internalErrorHandler());
 
 export default app;

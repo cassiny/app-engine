@@ -13,6 +13,9 @@
     ],
     "no-use-before-define": [
       "off"
+    ],
+    "comma-dangle": [
+      "off"
     ]
   }
 }

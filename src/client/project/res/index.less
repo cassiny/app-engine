@@ -1,9 +1,20 @@
+@import '~variables.less';
+
 .project-header {
-  background: #f5f5f5;
+  background: @breadcrumb-bg;
+}
+
+.project-crumb {
+  font-size: @font-size-h3;
+  margin: 12px 0;
+
+  .breadcrumb-item.active {
+    font-weight: bold;
+  }
 }
 
 .project-tab {
   nav {
-    background: #f5f5f5;
+    background: @breadcrumb-bg;
   }
 }

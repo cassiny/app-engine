@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 import NotFoundPage from '../../common/page/NotFoundPage';
 
 import ProjectTab from '../component/ProjectTab';
-import ProjectBreadcrumbs from '../component/ProjectBreadcrumbs';
+import ProjectBreadcrumb from '../component/ProjectBreadcrumb';
 
 import BuildHistoryTabPage from '../tab/BuildHistoryTabPage';
 import DashboardTabPage from '../tab/DashboardTabPage';
@@ -40,7 +40,7 @@ export default class ProjectDetailApp extends Component {
       <div className="project-detail-app">
         <div className="project-header">
           <div className="container">
-            <ProjectBreadcrumbs username={username} path={path} />
+            <ProjectBreadcrumb username={username} path={path} />
           </div>
         </div>
         <div className="project-content">

@@ -13,14 +13,19 @@ import SettingsTabPage from '../tab/SettingsTabPage';
 
 export default class ProjectDetailApp extends Component {
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
+    params: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   render() {
+    const { children, params } = this.props;
     return (
       <div>
-        <ProjectBreadcrumbs />
-        <ProjectTab page={this.props.children} />
+        <ProjectBreadcrumbs username={params.username} path={params.path} />
+        <ProjectTab page={children} />
       </div>
     );
   }

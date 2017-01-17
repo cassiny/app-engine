@@ -5,15 +5,18 @@ const webpack = require('webpack');
 module.exports = {
   context: path.resolve('./src/client'),
   entry: {
-    vendor: ['babel-polyfill', 'jquery'],
+    vendor: ['babel-polyfill', 'jquery', 'react'],
 
     common: ['./common/res/index.less'],
 
-    login: ['./login/index.js', './login/res/index.less'],
-    join: ['./join/index.js', './join/res/index.less'],
+    login: ['./user/login/index.js', './user/login/res/index.less'],
+    join: ['./user/join/index.js', './user/join/res/index.less'],
     welcome: ['./welcome/res/index.less'],
+
+    'project-detail-app': ['./project/app/ProjectDetailApp.jsx'],
   },
   resolve: {
+    extensions: ['', '.js', '.jsx'],
     alias: {
       bootstrap: path.resolve('./node_modules/bootstrap'),
       joi: 'joi-browser',
@@ -59,7 +62,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      React: 'react',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

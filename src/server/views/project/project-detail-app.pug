@@ -1,0 +1,10 @@
+extends ../page-layout.pug
+
+block append styles
+  link(rel='stylesheet', href=app.getAssetUrl('/css/project-detail-app.min.css'))
+
+block append scripts
+  script(src=app.getAssetUrl('/js/project-detail-app.min.js'))
+
+block append content
+  #root.container

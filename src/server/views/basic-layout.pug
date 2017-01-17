@@ -6,6 +6,9 @@ html
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     meta(name='viewport', content='initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no')
     title= title + ' - Cassiny AppEngine'
+    if req.user
+      meta(name='cassiny-username', value=req.user.username)
+    block meta
     block styles
       link(rel='stylesheet', href=app.getAssetUrl('/css/common.min.css'))
     block scripts

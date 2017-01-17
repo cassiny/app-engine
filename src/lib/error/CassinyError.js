@@ -1,13 +1,21 @@
-class CassinyError extends Error {
+// We do not extend the built-in Error type
+// See http://stackoverflow.com/questions/31089801/extending-error-in-javascript-with-es6-syntax
+class CassinyError {
 
   constructor(code, type, message) {
-    super(message);
+    this.message = message;
+    this.name = this.constructor.name;
     this.type = type;
     this.code = code;
     this.isClientError = this.code > 1000;
+    this.stack = new Error().stack;
   }
 
 }
+
+CassinyError.prototype = Object.create(Error.prototype);
+
+const errorMap = {};
 
 [
   // server side - internal errors.
@@ -19,7 +27,9 @@ class CassinyError extends Error {
   { type: 'EMAIL_ALREADY_EXIST', code: 1003 },
 
 ].forEach((err) => {
-  CassinyError[err.type] = message => new CassinyError(err.code, err.type, message);
+  errorMap[err.type] = function error(message) {
+    return new CassinyError(err.code, err.type, message);
+  };
 });
 
-export default CassinyError;
+export default errorMap;

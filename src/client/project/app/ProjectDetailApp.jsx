@@ -24,6 +24,7 @@ export default class ProjectDetailApp extends Component {
   render() {
     const { username, path } = this.props.params;
     const projectPath = `${username}/${path}`;
+    document.title = path + ' - Cassiny AppEngine';
     const tabs = [
       { name: 'Dashboard', path: `/project/${projectPath}` },
       { name: 'Build History', path: `/project/${projectPath}/builds` },

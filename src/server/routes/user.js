@@ -2,7 +2,6 @@ import passport from 'passport';
 import { Router } from 'express';
 
 import app from '../app';
-import CassinyError from '../../lib/error/CassinyError';
 import logger from './../../lib/log/logger';
 import UserManager from './../../lib/user/UserManager';
 

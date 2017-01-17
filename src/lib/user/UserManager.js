@@ -65,6 +65,7 @@ export default class UserManager {
   }
 
   static async changeUserPassword(id, oldPassword, newPassword) {
+    // TODO :
     // - cannot empty
     // - cannot be same
     // - id exist
@@ -72,10 +73,11 @@ export default class UserManager {
     // - oldPassword valid
     // save new password
 
-    const validateResult = userSchema.password.validate(newPassword);
-    if (validateResult.error !== null) {
+    // const validateResult = userSchema.password.validate(newPassword);
+    // if (validateResult.error !== null) {
 
-    }
+    // }
+    return true;
   }
 
   static async getUserByEmail(email) {

@@ -7,6 +7,8 @@ const router = Router();
 router.use('/', require('./user').default);
 router.use('/api', require('../api').default);
 
+router.use('/project', require('./project').default);
+
 router.get('/', (req, res) => {
   if (!req.user) {
     res.render('welcome', { title: 'Welcome', app, req });

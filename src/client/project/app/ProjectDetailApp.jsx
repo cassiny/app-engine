@@ -11,6 +11,9 @@ import BuildHistoryTabPage from '../tab/BuildHistoryTabPage';
 import DashboardTabPage from '../tab/DashboardTabPage';
 import SettingsTabPage from '../tab/SettingsTabPage';
 
+import UserService from '../../common/user/service/UserService';
+import ProjectService from '../service/ProjectService';
+
 export default class ProjectDetailApp extends Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -24,13 +27,13 @@ export default class ProjectDetailApp extends Component {
   render() {
     const { username, path } = this.props.params;
     const projectPath = `${username}/${path}`;
-    document.title = path + ' - Cassiny AppEngine';
+    document.title = `${path} - Cassiny AppEngine`;
     const tabs = [
-      { name: 'Dashboard', path: `/project/${projectPath}` },
+      { name: 'Dashboard', path: `/project/${projectPath}`, isIndex: true },
       { name: 'Build History', path: `/project/${projectPath}/builds` },
       { name: 'Settings', path: `/project/${projectPath}/settings` },
     ].map(tab => Object.assign({}, tab, {
-      isActive: this.context.router.isActive(tab.path, true),
+      isActive: this.context.router.isActive(tab.path, tab.isIndex),
     }));
     return (
       <div className="project-header">
@@ -45,6 +48,9 @@ export default class ProjectDetailApp extends Component {
 
 
 $(() => {
+  UserService.getCurrentUser();
+  ProjectService.getCurrentProject();
+
   render(
     <Router history={browserHistory}>
       <Route path="/project/:username/:path" component={ProjectDetailApp}>

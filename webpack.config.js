@@ -32,7 +32,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel-loader'],
       },
@@ -59,6 +59,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+      React: 'react',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

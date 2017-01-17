@@ -5,7 +5,7 @@ export default function errorLogHandler() {
     if (err.isClientError) {
       logger.warn(err);
     } else {
-      logger.err(err);
+      logger.error(err);
     }
     next(err);
   };

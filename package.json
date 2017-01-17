@@ -29,6 +29,7 @@
   "homepage": "https://github.com/cassiny/app-engine#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-polyfill": "^6.20.0",
     "babel-preset-es2015": "^6.18.0",

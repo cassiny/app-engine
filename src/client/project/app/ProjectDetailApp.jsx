@@ -12,20 +12,31 @@ import DashboardTabPage from '../tab/DashboardTabPage';
 import SettingsTabPage from '../tab/SettingsTabPage';
 
 export default class ProjectDetailApp extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
+
   static propTypes = {
     children: PropTypes.element.isRequired,
-    params: PropTypes.shape({
-      username: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
-    }).isRequired,
+    params: PropTypes.shape({ username: PropTypes.string, path: PropTypes.string }).isRequired,
   };
 
   render() {
-    const { children, params } = this.props;
+    const { username, path } = this.props.params;
+    const projectPath = `${username}/${path}`;
+    const tabs = [
+      { name: 'Dashboard', path: `/project/${projectPath}` },
+      { name: 'Build History', path: `/project/${projectPath}/builds` },
+      { name: 'Settings', path: `/project/${projectPath}/settings` },
+    ].map(tab => Object.assign({}, tab, {
+      isActive: this.context.router.isActive(tab.path, true),
+    }));
     return (
-      <div>
-        <ProjectBreadcrumbs username={params.username} path={params.path} />
-        <ProjectTab page={children} />
+      <div className="project-header">
+        <div className="container">
+          <ProjectBreadcrumbs username={username} path={path} />
+          <ProjectTab projectPath={projectPath} tabs={tabs} page={this.props.children} />
+        </div>
       </div>
     );
   }
@@ -41,5 +52,5 @@ $(() => {
         <Route path="settings" component={SettingsTabPage} />
         <Route path="*" component={NotFoundPage} />
       </Route>
-    </Router>, document.getElementById('root'));
+    </Router>, document.getElementById('projectRoot'));
 });

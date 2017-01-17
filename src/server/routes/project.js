@@ -13,6 +13,10 @@ router.use('/:username/:path', (req, res, next) => {
   next();
 });
 
+router.get('/:username/:path', (req, res) => {
+  res.render('project/project-detail-app', { title: '', app, req });
+});
+
 router.get('/:username/:path/*', (req, res) => {
   res.render('project/project-detail-app', { title: '', app, req });
 });

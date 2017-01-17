@@ -49,7 +49,6 @@ export default class ProjectDetailApp extends Component {
 
 
 $(() => {
-
   render(
     <Router history={browserHistory}>
       <Route path="/project/:username/:path" component={ProjectDetailApp}>

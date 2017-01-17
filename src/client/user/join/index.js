@@ -10,7 +10,7 @@ const schema = Joi.object().keys({
                 .token(),
   password: Joi.string()
                 .min(5)
-                .token(),
+                .token()
 });
 
 $(document).ready(() => {
@@ -54,13 +54,13 @@ function validate(fieldsForValidation) {
   const validationsResult = Joi.validate({
     email: $('#emailField').val(),
     username: $('#usernameField').val(),
-    password: $('#passwordField').val(),
+    password: $('#passwordField').val()
   }, schema, { abortEarly: false });
 
   if (!validationsResult.error) {
     return {
       ok: true,
-      value: validationsResult.value,
+      value: validationsResult.value
     };
   }
 
@@ -77,7 +77,6 @@ function validate(fieldsForValidation) {
           result.push(val);
         }
       });
-  console.log(result);
 
   return {
     ok: false,

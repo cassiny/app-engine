@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 export default class ProjectBreadcrumbs extends Component {
   static propTypes = {
     username: PropTypes.string.isRequired,
-    path: PropTypes.string,
+    path: PropTypes.string
   };
 
   static defaultProps = {
-    path: '',
+    path: ''
   };
 
   render() {

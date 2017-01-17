@@ -26,17 +26,21 @@ export default class ProjectDetailApp extends Component {
     const projectPath = `${username}/${path}`;
     document.title = `${path} - Cassiny AppEngine`;
     const tabs = [
-      { name: 'Dashboard', path: `/project/${projectPath}`, isIndex: true },
-      { name: 'Build History', path: `/project/${projectPath}/builds` },
-      { name: 'Settings', path: `/project/${projectPath}/settings` }
-    ].map(tab => Object.assign({}, tab, {
-      isActive: this.context.router.isActive(tab.path, tab.isIndex)
-    }));
+      { name: 'Dashboard', isIndex: true },
+      { name: 'Build History', path: 'builds' },
+      { name: 'Settings', path: 'settings' }
+    ].map((tab) => {
+      const absPath = `/project/${projectPath}/${tab.isIndex ? '' : tab.path}`;
+      return Object.assign({}, tab, {
+        path: absPath,
+        isActive: this.context.router.isActive(absPath, tab.isIndex)
+      });
+    });
     return (
       <div className="project-header">
         <div className="container">
           <ProjectBreadcrumbs username={username} path={path} />
-          <ProjectTab projectPath={projectPath} tabs={tabs} page={this.props.children} />
+          <ProjectTab tabs={tabs} page={this.props.children} />
         </div>
       </div>
     );

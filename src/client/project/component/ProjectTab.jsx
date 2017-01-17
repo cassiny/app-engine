@@ -3,8 +3,7 @@ import { Link } from 'react-router';
 
 export default class ProjectTab extends Component {
   static propTypes = {
-    page: PropTypes.element,
-    projectPath: PropTypes.string.isRequired
+    page: PropTypes.element
   };
 
   static defaultProps = {

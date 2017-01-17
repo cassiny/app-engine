@@ -1,0 +1,3 @@
+if injections
+  each value, key in injections
+    script.cassiny-injection(type='application/json', data-key=key)!= JSON.stringify(value)

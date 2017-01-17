@@ -8,7 +8,7 @@ const schema = Joi.object().keys({
   password: Joi.string()
                 .min(5)
                 .token()
-                .trim(),
+                .trim()
 });
 
 $(document).ready(() => {
@@ -51,13 +51,13 @@ function validate(fieldsForValidation) {
   // Validate all fields
   const validationsResult = Joi.validate({
     loginName: $('#loginNameField').val(),
-    password: $('#passwordField').val(),
+    password: $('#passwordField').val()
   }, schema, { abortEarly: false });
 
   if (!validationsResult.error) {
     return {
       ok: true,
-      value: validationsResult.value,
+      value: validationsResult.value
     };
   }
 
@@ -77,7 +77,7 @@ function validate(fieldsForValidation) {
 
   return {
     ok: false,
-    value: result,
+    value: result
   };
 }
 

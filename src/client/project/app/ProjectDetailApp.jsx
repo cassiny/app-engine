@@ -5,23 +5,20 @@ import { render } from 'react-dom';
 import NotFoundPage from '../../common/page/NotFoundPage';
 
 import ProjectTab from '../component/ProjectTab';
-import ProjectBreadcrumbs from '../component/ProjectBreadcrumbs';
+import ProjectBreadcrumb from '../component/ProjectBreadcrumb';
 
 import BuildHistoryTabPage from '../tab/BuildHistoryTabPage';
 import DashboardTabPage from '../tab/DashboardTabPage';
 import SettingsTabPage from '../tab/SettingsTabPage';
 
-import UserService from '../../common/user/service/UserService';
-import ProjectService from '../service/ProjectService';
-
 export default class ProjectDetailApp extends Component {
   static contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
 
   static propTypes = {
     children: PropTypes.element.isRequired,
-    params: PropTypes.shape({ username: PropTypes.string, path: PropTypes.string }).isRequired,
+    params: PropTypes.shape({ username: PropTypes.string, path: PropTypes.string }).isRequired
   };
 
   render() {
@@ -29,17 +26,25 @@ export default class ProjectDetailApp extends Component {
     const projectPath = `${username}/${path}`;
     document.title = `${path} - Cassiny AppEngine`;
     const tabs = [
-      { name: 'Dashboard', path: `/project/${projectPath}`, isIndex: true },
-      { name: 'Build History', path: `/project/${projectPath}/builds` },
-      { name: 'Settings', path: `/project/${projectPath}/settings` },
-    ].map(tab => Object.assign({}, tab, {
-      isActive: this.context.router.isActive(tab.path, tab.isIndex),
-    }));
+      { name: 'Dashboard', isIndex: true },
+      { name: 'Build History', path: 'builds' },
+      { name: 'Settings', path: 'settings' }
+    ].map((tab) => {
+      const absPath = `/project/${projectPath}/${tab.isIndex ? '' : tab.path}`;
+      return Object.assign({}, tab, {
+        path: absPath,
+        isActive: this.context.router.isActive(absPath, tab.isIndex)
+      });
+    });
     return (
-      <div className="project-header">
-        <div className="container">
-          <ProjectBreadcrumbs username={username} path={path} />
-          <ProjectTab projectPath={projectPath} tabs={tabs} page={this.props.children} />
+      <div className="project-detail-app">
+        <div className="project-header">
+          <div className="container">
+            <ProjectBreadcrumb username={username} path={path} />
+          </div>
+        </div>
+        <div className="project-content">
+          <ProjectTab tabs={tabs} page={this.props.children} />
         </div>
       </div>
     );
@@ -48,9 +53,6 @@ export default class ProjectDetailApp extends Component {
 
 
 $(() => {
-  UserService.getCurrentUser();
-  ProjectService.getCurrentProject();
-
   render(
     <Router history={browserHistory}>
       <Route path="/project/:username/:path" component={ProjectDetailApp}>

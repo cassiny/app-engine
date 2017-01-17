@@ -1,11 +1,12 @@
+import injections from '../../common/injections';
 import UserService from '../../common/user/service/UserService';
 
 export default class ProjectService {
   static _project = null;
 
   static getCurrentProject() {
-    if (ProjectService._project === null) {
-      const prj = JSON.parse($('meta[name="cassiny-project"]').attr('value'));
+    if (!ProjectService._project) {
+      const prj = injections.project;
       prj.fullPath = `${UserService.getCurrentUser().username}/${prj.path}`;
       prj.lastestBuild = {
 

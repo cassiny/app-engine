@@ -48,8 +48,7 @@ export default class ProjectDetailApp extends Component {
 
 
 $(() => {
-  UserService.getCurrentUser();
-  ProjectService.getCurrentProject();
+  console.log(UserService.getCurrentUser());
 
   render(
     <Router history={browserHistory}>

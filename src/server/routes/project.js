@@ -26,7 +26,9 @@ router.get('/:username/:path*', (req, res) => {
       title: 'Loading',
       app,
       req,
-      projectJSON: res.get('projectJSON')
+      injections: {
+        project: JSON.parse(res.get('projectJSON'))
+      }
     });
 });
 

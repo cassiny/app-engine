@@ -78,8 +78,8 @@ app.getAssetUrl = function getAssetUrl(relPath) {
   return `${prefix}${relPath}`;
 };
 
-app.use(errorLogHandler());
-app.use(clientErrorHandler());
-app.use(internalErrorHandler());
+//app.use(errorLogHandler());
+//app.use(clientErrorHandler());
+//app.use(internalErrorHandler());
 
 export default app;

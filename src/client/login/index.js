@@ -4,7 +4,6 @@ const schema = Joi.object().keys({
   loginName: Joi.string()
                 .min(3)
                 .max(30)
-                .token()
                 .trim(),
   password: Joi.string()
                 .min(5)

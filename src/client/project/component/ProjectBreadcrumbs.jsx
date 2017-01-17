@@ -2,10 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 export default class ProjectBreadcrumbs extends Component {
-  static contextTypes: {
-    router: React.PropTypes.func.isRequired,
-  };
-
   static propTypes = {
     username: PropTypes.string.isRequired,
     path: PropTypes.string,

@@ -3,7 +3,12 @@ import { Link } from 'react-router';
 
 export default class ProjectTab extends Component {
   static propTypes = {
-    page: PropTypes.element
+    page: PropTypes.element,
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+      isActive: PropTypes.boolean,
+      name: PropTypes.string,
+      path: PropTypes.string
+    })).isRequired
   };
 
   static defaultProps = {
@@ -19,13 +24,17 @@ export default class ProjectTab extends Component {
     return (
       <div className="project-tab">
         <nav className="tabs">
-          <ul className="nav nav-tabs">
-            {tabs}
-          </ul>
+          <div className="container">
+            <ul className="nav nav-tabs">
+              {tabs}
+            </ul>
+          </div>
         </nav>
-        <section className="page">
-          {this.props.page}
-        </section>
+        <main>
+          <div className="container">
+            {this.props.page}
+          </div>
+        </main>
       </div>
     );
   }

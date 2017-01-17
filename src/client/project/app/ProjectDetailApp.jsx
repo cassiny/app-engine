@@ -37,9 +37,13 @@ export default class ProjectDetailApp extends Component {
       });
     });
     return (
-      <div className="project-header">
-        <div className="container">
-          <ProjectBreadcrumbs username={username} path={path} />
+      <div className="project-detail-app">
+        <div className="project-header">
+          <div className="container">
+            <ProjectBreadcrumbs username={username} path={path} />
+          </div>
+        </div>
+        <div className="project-content">
           <ProjectTab tabs={tabs} page={this.props.children} />
         </div>
       </div>

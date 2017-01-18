@@ -8,7 +8,7 @@
     "dev-server": "cross-env NODE_ENV=development nodemon index.js -i src/client/ -i dist/ --exec babel-node",
     "dev-client": "cross-env NODE_ENV=development webpack-dev-server --compress --host 127.0.0.1",
     "build": "babel ./src/server -d ./dist/server && babel ./src/lib -d ./dist/lib",
-    "test": "mocha"
+    "test": "cross-env NODE_ENV=development mocha"
   },
   "repository": {
     "type": "git",

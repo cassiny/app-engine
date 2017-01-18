@@ -9,7 +9,7 @@ export default class ProjectService {
       const prj = injections.project;
       prj.fullPath = `${UserService.getCurrentUser().username}/${prj.path}`;
       prj.lastestBuild = {
-
+        revision: 5
       };
       prj.applicationInstances = [
         { name: 'app-01', state: 10, host: '172.168.4.152', port: 8054, build: { revision: 12 } },
@@ -22,5 +22,15 @@ export default class ProjectService {
       ProjectService._project = prj;
     }
     return ProjectService._project;
+  }
+
+  static async getBuildsOfPrjoject(username, path) {
+    return [
+      { revision: 5 },
+      { revision: 4 },
+      { revision: 3 },
+      { revision: 2 },
+      { revision: 1 }
+    ];
   }
 }

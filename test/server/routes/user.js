@@ -1,8 +1,7 @@
 import agent from './../agent';
+import actions from './../../basic/defaultActions';
 
 const login = '/login';
-const logout = '/logout';
-const logoutAction = () => agent.get(logout);
 
 describe('GET /login', () => {
   it('page should be ok', (done) => {
@@ -21,8 +20,8 @@ describe('GET /login', () => {
 
 describe('POST /login', () => {
   describe('admin login', () => {
-    beforeEach(logoutAction);
-    after(logoutAction);
+    beforeEach(actions.all(actions.logoutAction));
+    after(actions.all(actions.logoutAction));
 
     it('should remain when username is incorrect', (done) => {
       agent

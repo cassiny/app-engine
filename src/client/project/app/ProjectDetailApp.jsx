@@ -61,5 +61,5 @@ $(() => {
         <Route path="settings" component={SettingsTabPage} />
         <Route path="*" component={NotFoundPage} />
       </Route>
-    </Router>, document.getElementById('projectRoot'));
+    </Router>, document.getElementById('projectDetailAppRoot'));
 });

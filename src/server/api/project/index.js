@@ -1,6 +1,5 @@
 import { Router } from 'express';
 
-import logger from './../../../lib/log/logger';
 import ProjectManager from './../../../lib/project/ProjectMaganer';
 
 
@@ -8,7 +7,6 @@ const router = Router();
 
 // username filter
 router.use('username', (req, res, next, username) => {
-  logger.debug('Check user!');
   if (req.user.username !== username) {
     res.redirect('/');
   } else {
@@ -23,7 +21,7 @@ const projectPathValidationFilter = async (req, res, next) => {
     if (exists) {
       next();
     } else {
-      res.redirect('/');
+      res.status(403).json({ message: 'Forbidden' });
     }
   }
 };
@@ -81,5 +79,8 @@ router.put('/:username/:path', projectPathValidationFilter, async (req, res) => 
 router.delete('/:username/:path', projectPathValidationFilter, async (req, res) => {
   res.json('Delete the project');
 });
+
+// Add build subroute
+router.use('/:username/:path/build', require('./../build').default);
 
 export default router;

@@ -16,7 +16,7 @@ export default class ProjectBreadcrumb extends Component {
     return (
       <ol className="project-crumb breadcrumb">
         <li className="breadcrumb-item">
-          <Link to={`/project/${username}/`}>{username}</Link>
+          <a href={`/project/${username}/`}>{username}</a>
         </li>
         <li className="breadcrumb-item active">
           <Link to={`/project/${username}/${path}/`}>{path}</Link>

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Joi from 'joi';
 
 const Schema = mongoose.Schema;
 
@@ -37,6 +38,36 @@ const projectSchema = new mongoose.Schema({
 }, {
   collection: 'project',
 });
+
+// -------------------------------
+// Project validator Schema
+// -------------------------------
+const defaultProjectDesc = info => `Project ${info.name} is based on Node.js`;
+defaultProjectDesc.description = 'generated description';
+
+
+projectSchema.statics.projectInfoSchema = {
+  name: Joi.string().min(1).trim().required(),
+
+  desc: Joi.string().optional().default(defaultProjectDesc),
+
+  path: Joi
+  .string()
+  .min(1)
+  .max(64)
+  .regex(/^\w+-?\w+(?!-)$/)
+  .required(),
+};
+
+projectSchema.statics.gitInfoSchema = {
+  url: Joi.string().uri({
+    scheme: [
+      'git',
+      /https?/
+    ]
+  }),
+};
+
 
 // -------------------------------
 // Dao operation

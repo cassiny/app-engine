@@ -1,58 +1,25 @@
+import actions from './../../basic/defaultActions';
 import agent from './../../server/agent';
 import logger from './../../../src/lib/log/logger';
+import Project from './../../../src/lib/project/model/Project';
 import ProjectManager from './../../../src/lib/project/ProjectMaganer';
 import User from './../../../src/lib/user/model/User';
-import Project from './../../../src/lib/project/model/Project';
 
-const all = (...handlers) => {
-  const len = handlers.length;
-
-  let i = -1;
-  const next = () => {
-    i += 1;
-    try {
-      if (i < len - 1) {
-        handlers[i](next);
-      } else if (i === len - 1) {
-        handlers[i]();
-      }
-    } catch (err) {
-      logger.error(err);
-    }
-  };
-
-  try {
-    next();
-  } catch (err) {
-    logger.error(err);
-  }
-};
-
-const adminLogin = (next) => {
-  agent
-      .post('/login')
-      .send({
-        password: 'admin',
-        login_name: 'Admin',
-      })
-      .end(next);
-};
 
 const username = 'admin';
 const projectPath = 'ooo';
 
 describe('Project Manager', () => {
   let userId;
-  before(done => all(
+  before(actions.all(
     (next) => {
       User.findOne({ username }).exec((err, user) => {
         userId = user.id;
         next();
       });
     },
-    adminLogin,
-    done)
-  );
+    actions.adminLoginAction,
+  ));
 
   it('should create project successful', (done) => {
     agent.post(`/api/project/${username}/${projectPath}`)

@@ -73,7 +73,7 @@ projectSchema.statics.gitInfoSchema = {
 // Dao operation
 // -------------------------------
 
-projectSchema.statics.getProjectsByUserId = async function query(userId) {
+projectSchema.statics.getProjectsByUserId = async function getProjectsByUserId(userId) {
   const projectList = await this
   .find({ ownerId: userId })
   .select('-ownerId -git.username -git.password')
@@ -82,8 +82,13 @@ projectSchema.statics.getProjectsByUserId = async function query(userId) {
   return projectList;
 };
 
+projectSchema.statics.getProjectByPath =
+async function getProjectByPath(userId, path, lean = true) {
+  const project = await this.findOne({ ownerId: userId, path }, '-ownerId -git.username -git.password', { lean }).exec();
+  return project;
+};
 
-projectSchema.statics.existProject = async function query(userId, path) {
+projectSchema.statics.existProject = async function existProject(userId, path) {
   const project = await this.findOne({ ownerId: userId, path }, 'id', { lean: true }).exec();
   return project !== null;
 };

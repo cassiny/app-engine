@@ -38,6 +38,24 @@ const projectSchema = new mongoose.Schema({
   collection: 'project',
 });
 
+// -------------------------------
+// Dao operation
+// -------------------------------
+
+projectSchema.statics.getProjectsByUserId = async function query(userId) {
+  const projectList = await this
+  .find({ ownerId: userId })
+  .select('-ownerId -git.username -git.password')
+  .sort({ createTime: 'desc' })
+  .exec();
+  return projectList;
+};
+
+
+projectSchema.statics.existProject = async function query(userId, path) {
+  const project = await this.findOne({ ownerId: userId, path }, 'id', { lean: true }).exec();
+  return project !== null;
+};
 
 export default mongoose.model('Project', projectSchema);
 

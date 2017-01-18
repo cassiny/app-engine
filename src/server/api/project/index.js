@@ -16,6 +16,19 @@ router.use('username', (req, res, next, username) => {
   }
 });
 
+// username,path filter
+const projectPathValidationFilter = async (req, res, next) => {
+  if (req.params.path) {
+    const exists = await ProjectManager.existProject(req.user.id, req.params.path);
+    if (exists) {
+      next();
+    } else {
+      res.redirect('/');
+    }
+  }
+};
+
+
 // Project list
 router.get('/:username',
   async (req, res) => {
@@ -26,7 +39,7 @@ router.get('/:username',
   });
 
 // Get project
-router.get('/:username/:path', async (req, res) => {
+router.get('/:username/:path', projectPathValidationFilter, async (req, res) => {
   const project = await ProjectManager.getProjectByPath(req.user.id, req.params.path);
   res.json(project);
 });
@@ -56,12 +69,12 @@ router.post('/:username/:path', async (req, res) => {
 });
 
 // Modify project
-router.put('/:username/:path', async (req, res) => {
+router.put('/:username/:path', projectPathValidationFilter, async (req, res) => {
   res.json('Modify project');
 });
 
 // Delete project
-router.delete('/:username/:path', async (req, res) => {
+router.delete('/:username/:path', projectPathValidationFilter, async (req, res) => {
   res.json('Delete the project');
 });
 

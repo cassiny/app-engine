@@ -22,4 +22,14 @@ describe('Project Manager', () => {
     const project = await ProjectManager.getProjectByPath(userId, 'example');
     project.should.have.property('name').which.is.equal('example');
   });
+
+  it('should not exist project "lovelive"', async () => {
+    const result = await ProjectManager.existProject(userId, 'lovelive');
+    result.should.be.false();
+  });
+
+  it('should exist project "example"', async () => {
+    const result = await ProjectManager.existProject(userId, 'example');
+    result.should.be.true();
+  });
 });

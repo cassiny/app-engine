@@ -30,11 +30,11 @@ export default class ProjectManager {
   }
 
   static async getProjectsByUserId(userId) {
-    const projectList = await Project
-    .find({ ownerId: userId })
-    .sort({ createTime: 'desc' })
-    .exec();
-    return projectList;
+    return Project.getProjectsByUserId(userId);
+  }
+
+  static async existProject(userId, path) {
+    return Project.existProject(userId, path);
   }
 
 }

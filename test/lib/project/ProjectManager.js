@@ -83,7 +83,7 @@ describe('Project Manager', () => {
       'git.branch': 'master',
       'git.url': 'https://github.com/emengjzs/node-es6-demo.git',
     })
-    .expect(500)
+    .expect(400)
     .expect(res => res.body.message.should.containEql('exists'))
     .end(done);
   });

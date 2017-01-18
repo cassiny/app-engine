@@ -25,7 +25,7 @@ describe('Error Handler', () => {
   it('should return client error message when client error raises', (done) => {
     request(app)
       .get('/1')
-      .expect(500)
+      .expect(400)
       .expect({ message: 'client err' })
       .end(done);
   });

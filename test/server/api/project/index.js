@@ -1,55 +1,16 @@
 import agent from './../../agent';
-import logger from './../../../../src/lib/log/logger';
 import Project from './../../../../src/lib/project/model/Project';
+import actions from './../../../basic/defaultActions';
 
 const username = 'admin';
 const projectPath = 'example';
 
-const all = (...handlers) => {
-  const len = handlers.length;
-
-  let i = -1;
-  const next = () => {
-    i += 1;
-    try {
-      if (i < len - 1) {
-        handlers[i](next);
-      } else if (i === len - 1) {
-        handlers[i]();
-      }
-    } catch (err) {
-      logger.error(err);
-    }
-  };
-
-  try {
-    next();
-  } catch (err) {
-    logger.error(err);
-  }
-};
-
-
-
-const adminLogin = next =>
-  agent
-      .post('/login')
-      .send({
-        password: 'admin',
-        login_name: 'Admin',
-      })
-      .end(next)
-;
-
 describe('POST /api/project', () => {
-  before(done => all(
-    adminLogin,
+  before(actions.all(
+    actions.adminLoginAction,
     next =>
-      Project.findOneAndRemove({ id: projectId, path: projectPath }).exec((err, res) => next()),
-    done
+      Project.findOneAndRemove({ username, path: projectPath }).exec((err, res) => next()),
   ));
-
-  let projectId;
 
   it('should create project successful', (done) => {
     agent.post(`/api/project/${username}/${projectPath}`)
@@ -65,7 +26,6 @@ describe('POST /api/project', () => {
     .expect(200)
     .expect((res) => {
       res.body.shoud.have.property('id').which.should.be.number();
-      projectId = res.body.id;
     })
     .end(agent.debug(done));
   });

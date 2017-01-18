@@ -22,9 +22,15 @@ const errorMap = {};
   { type: 'UNHANDLE_ERROR', code: 0 },
 
   // server side - client visible errors.
+
+  // register
   { type: 'INVALID_REGISTRATION', code: 1001 },
   { type: 'USERNAME_ALREADY_EXIST', code: 1002 },
   { type: 'EMAIL_ALREADY_EXIST', code: 1003 },
+
+  // create project
+  { type: 'PROJECT_PATH_ALREADY_EXIST', code: 1004 },
+  { type: 'PROJECT_CREATE_PARAM_INVALID', code: 1005 },
 
 ].forEach((err) => {
   errorMap[err.type] = function error(message) {

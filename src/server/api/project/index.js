@@ -49,7 +49,7 @@ router.get('/:username/:path', projectPathValidationFilter, async (req, res) => 
 // { userId, name, desc, path },
 // { url, username, password, branch },
 //
-router.post('/:username/:path', async (req, res) => {
+router.post('/:username/:path', async (req, res, next) => {
   const projectInput = {
     userId: req.user.id,
     name: req.body.name,
@@ -64,8 +64,12 @@ router.post('/:username/:path', async (req, res) => {
     branch: req.body['git.branch'],
   };
 
-  const project = await ProjectManager.createProject(projectInput, repositoryInput);
-  res.json(project);
+  try {
+    const project = await ProjectManager.createProject(projectInput, repositoryInput);
+    res.json(project);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Modify project

@@ -5,7 +5,7 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     meta(name='viewport', content='initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no')
-    title= title + ' - Cassiny AppEngine'
+    title= title ? (title + ' - Cassiny AppEngine') : 'Cassiny AppEngine'
     if req.user
       meta(name='cassiny-username', value=req.user.username)
     block meta

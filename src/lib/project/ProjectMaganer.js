@@ -44,7 +44,7 @@ export default class ProjectManager {
   }
 
   static async getProjectByPath(userId, path) {
-    const project = await Project.findOne({ path, ownerId: userId }).exec();
+    const project = await Project.getProjectByPath(userId, path);
     return project;
   }
 
@@ -54,6 +54,14 @@ export default class ProjectManager {
 
   static async existProject(userId, path) {
     return Project.existProject(userId, path);
+  }
+
+  static async getBuildHistoryList(userId, path) {
+    return [
+      {},
+      {},
+      {}
+    ];
   }
 
 }

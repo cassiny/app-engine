@@ -1,6 +1,6 @@
 .instance-list {
   .instance-list-item {
-    height: 60px;
+    height: 75px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -9,22 +9,32 @@
       border-top: 1px solid @table-border-color;
     }
 
+    &:hover {
+      background: @list-group-hover-bg;
+    }
+
     .info-group {
       display: flex;
       flex-direction: column;
 
       .name {
         margin-top: 5px;
-        margin-bottom: 0px;
+        margin-bottom: 5px;
         cursor: pointer;
+        font-size: 16px;
+        color: @text-color;
+        font-weight: 500;
+
         &:hover {
           text-decoration: none;
+          color: @brand-primary;
         }
       }
 
       .address {
         font-size: @font-size-small;
         cursor: pointer;
+        color: @gray-light;
         &:hover {
           text-decoration: none;
         }

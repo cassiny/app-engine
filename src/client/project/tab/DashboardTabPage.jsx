@@ -22,7 +22,7 @@ export default class DashboardTabPage extends Component {
   render() {
     return (
       <div className="dashboard">
-        <Card title="Dashboard" extra={<DropDownButton title="more" menu={['select all', 'delete all', 'detach all']} />}>
+        <Card title="Dashboard" extra={<DropDownButton title="more" menu={['select all', 'delete all', 'detach all']} float="right" />}>
           <InstanceList instances={this.props.project.applicationInstances} />
         </Card>
       </div>

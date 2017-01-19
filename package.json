@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "classnames": "^2.2.5",
     "config": "^1.24.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.3.2",

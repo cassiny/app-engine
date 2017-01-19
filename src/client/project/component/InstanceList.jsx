@@ -31,10 +31,12 @@ export default class InstanceList extends Component {
     const className = `instance-list-item col-md-9 offset-md-1 ${stateMap[instance.state]}`;
     return (
       <div className={className} key={instance.name}>
-        <span className="instance-name col-md-3">{instance.name}</span>
-        <span className="instance-adress col-md-3">{`${instance.host}:${instance.port}`}</span>
-        <span className="instance-state col-md-2">{stateMap[instance.state]}</span>
-        <span className="instance-build col-md-2">{`build#${instance.build.revision}`}</span>
+        <div className="info-group col-md-6">
+          <a className="name h4">{instance.name}</a>
+          <a className="address">{`${instance.host}:${instance.port}`}</a>
+        </div>
+        <span className="state col-md-4">{stateMap[instance.state]}</span>
+        <span className="build col-md-2">{`build#${instance.build.revision}`}</span>
         <button type="button" className="btn btn-default col-md-1">Default</button>
       </div>
     );

@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 
-export default class BuildHistoryTabPage extends React.Component {
+import BuildCard from '../component/BuildCard';
+
+export default class BuildHistoryTabPage extends Component {
+  static propTypes = {
+    buildHistory: PropTypes.arrayOf(PropTypes.shape({
+      revision: PropTypes.number
+    })).isRequired
+  };
+
+  static defaultProps = {
+    buildHistory: []
+  };
+
   render() {
-    return (<h3>Build History</h3>);
+    const { buildHistory } = this.props;
+    return (<div className="buildHistory">
+      {buildHistory.map(this.renderBuild)}
+    </div>);
+  }
+
+  renderBuild = (build) => {
+    return (<BuildCard key={build.revision} build={build} />);
   }
 }

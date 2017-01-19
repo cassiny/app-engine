@@ -20,7 +20,6 @@ export default class DashboardTabPage extends Component {
   render() {
     return (
       <div className="dashboard">
-        <h3>Dashboard</h3>
         <InstanceList instances={this.props.project.applicationInstances} />
       </div>
     );

@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import moment from 'moment';
+
 export default class BuildCard extends Component {
   static propTypes = {
     build: PropTypes.object.isRequired
@@ -17,6 +19,9 @@ export default class BuildCard extends Component {
 
   render() {
     const { build } = this.props;
+    const start = moment(build.startTime);
+    const end = moment(build.endTime);
+    const duration = end.from(start);
     const classString = `build-card ${this.getDescByState(build.state)}`;
     return (
       <div className={classString}>
@@ -35,8 +40,8 @@ export default class BuildCard extends Component {
           <div className="row-item hash">{build.hash}</div>
         </div>
         <div className="two-line col3">
-          <div className="row-item duration">{build.startTime.getTime()}</div>
-          <div className="row-item calendar">{build.endTime.getTime()}</div>
+          <div className="row-item duration">{duration}</div>
+          <div className="row-item calendar">{duration}</div>
         </div>
       </div>
     );

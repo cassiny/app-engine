@@ -12,6 +12,7 @@
     "jsx-a11y"
   ],
   "rules": {
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "react/sort-comp": "off"
   }
 }

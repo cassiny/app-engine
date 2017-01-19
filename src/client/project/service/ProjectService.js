@@ -24,7 +24,7 @@ export default class ProjectService {
     return ProjectService._project;
   }
 
-  static async getBuildsOfPrjoject(username, path) {
+  static async getBuildsOfPrjoject(username, path) {  // eslint-disable-line no-unused-vars
     return [
       { revision: 5 },
       { revision: 4 },

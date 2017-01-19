@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { cloneElement, Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 export default class ProjectTab extends Component {
@@ -16,26 +16,31 @@ export default class ProjectTab extends Component {
   };
 
   render() {
-    const tabs = this.props.tabs.map(tab =>
-      (<li key={tab.path} className={tab.isActive ? 'active' : null} role="presentation">
-        <Link to={tab.path}>{tab.name}</Link>
-      </li>));
+    const { tabs, ...other } = this.props;
 
     return (
       <div className="project-tab">
         <nav className="tabs">
           <div className="container">
             <ul className="nav nav-tabs">
-              {tabs}
+              {tabs.map(this.renderTab)}
             </ul>
           </div>
         </nav>
         <main>
           <div className="container">
-            {this.props.page}
+            {cloneElement(this.props.page, { ...other })}
           </div>
         </main>
       </div>
+    );
+  }
+
+  renderTab = (tab) => {
+    return (
+      <li key={tab.path} className={tab.isActive ? 'active' : null} role="presentation">
+        <Link to={tab.path}>{tab.name}</Link>
+      </li>
     );
   }
 }

@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import { render } from 'react-dom';
 
-import NotFoundPage from '../../common/page/NotFoundPage';
-
+import ProjectService from '../service/ProjectService';
 import ProjectTab from '../component/ProjectTab';
 import ProjectBreadcrumb from '../component/ProjectBreadcrumb';
 
 import BuildHistoryTabPage from '../tab/BuildHistoryTabPage';
 import DashboardTabPage from '../tab/DashboardTabPage';
+import NotFoundPage from '../../common/page/NotFoundPage';
 import SettingsTabPage from '../tab/SettingsTabPage';
 
 export default class ProjectDetailApp extends Component {
@@ -20,6 +20,23 @@ export default class ProjectDetailApp extends Component {
     children: PropTypes.element.isRequired,
     params: PropTypes.shape({ username: PropTypes.string, path: PropTypes.string }).isRequired
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      project: null
+    };
+  }
+
+  /**
+   * setState is not allowed in componentDidMount.
+   * Because it will trigger a second render() call and can lead to layout thrashing.
+   */
+  async componentWillMount() {
+    this.setState({
+      project: ProjectService.getCurrentProject()
+    });
+  }
 
   render() {
     const { username, path } = this.props.params;
@@ -44,7 +61,7 @@ export default class ProjectDetailApp extends Component {
           </div>
         </div>
         <div className="project-content">
-          <ProjectTab tabs={tabs} page={this.props.children} />
+          <ProjectTab project={this.state.project} tabs={tabs} page={this.props.children} />
         </div>
       </div>
     );

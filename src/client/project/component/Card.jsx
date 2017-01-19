@@ -23,7 +23,7 @@ export default class Card extends Component {
       >
         <div className="card-header panel-heading">
           <div className="card-title panel-title">
-            <h3>{this.props.title}</h3>
+            <h4>{this.props.title}</h4>
           </div>
           <div className="card-extra panel-title">{this.props.extra}</div>
         </div>

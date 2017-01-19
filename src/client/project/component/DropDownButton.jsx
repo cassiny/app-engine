@@ -4,7 +4,7 @@ import classnames from 'classnames';
 export default class DropdownButton extends Component {
   static propTypes = {
     className: PropTypes.string,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     menu: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.string),
       PropTypes.arrayOf(PropTypes.element)]).isRequired,
@@ -27,7 +27,7 @@ export default class DropdownButton extends Component {
   render() {
     const menu = this.props.menu.map(this._createMenuItem);
     return (<div className={`${this._getStyleClass()} ${this.state.open ? 'open' : ''} `}>
-      <button className="btn btn-info" onClick={this._handleClick}>{this.props.title}</button>
+      <button className="btn btn-link" onClick={this._handleClick}>{this.props.title}</button>
       <ul className="dropdown-menu">{menu}</ul>
     </div>);
   }

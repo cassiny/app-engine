@@ -27,10 +27,10 @@ export default class ProjectService {
   static async getBuildsOfPrjoject(username, path) {  // eslint-disable-line no-unused-vars
     return [
       {
-        revision: 5, branch: 'master', message: 'Add something.', state: 0, hash: 'a9f38d6', startTime: new Date(), endTime: new Date()
+        revision: 5, branch: 'master', message: 'Add something.', state: 0, hash: 'a9f38d6', startTime: new Date('2017-01-19 10:00:00'), endTime: new Date()
       },
       {
-        revision: 4, branch: 'master', message: 'Add something.', state: 200, hash: 'a9f38d6', startTime: new Date(), endTime: new Date()
+        revision: 4, branch: 'master', message: 'Add something.', state: 200, hash: 'a9f38d6', startTime: new Date('2017-01-19 9:58:18'), endTime: new Date('2017-01-19 10:00:00')
       },
       {
         revision: 3, branch: 'master', message: 'Add something.', state: 500, hash: 'a9f38d6', startTime: new Date(), endTime: new Date()

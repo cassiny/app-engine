@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class DashboardTabPage extends React.Component {
+import InstanceList from '../component/InstanceList';
+
+export default class DashboardTabPage extends Component {
+  static propTypes = {
+    project: PropTypes.shape({
+      applicationInstances: PropTypes.array,
+      serviceInstances: PropTypes.array,
+    }).isRequired
+  };
+
+  static defaultProps = {
+    project: {
+      applicationInstances: [],
+      serviceInstances: []
+    }
+  };
+
   render() {
-    return (<h3>Dashboard</h3>);
+    return (
+      <div className="dashboard">
+        <InstanceList instances={this.props.project.applicationInstances} />
+      </div>
+    );
   }
 }

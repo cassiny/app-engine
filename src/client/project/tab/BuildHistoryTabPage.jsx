@@ -1,7 +1,9 @@
 import React from 'react';
 
+import BuildCard from '../component/BuildCard';
+
 export default class BuildHistoryTabPage extends React.Component {
   render() {
-    return (<h3>Build History</h3>);
+    return (<BuildCard />);
   }
 }

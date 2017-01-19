@@ -30,26 +30,6 @@
           flex: 2 0 auto;
         }
       }
-
-      .build-num {
-
-      }
-
-      .hash {
-
-      }
-
-      .duration {
-
-      }
-
-      .calendar {
-
-      }
-
-      .commit-info {
-
-      }
     }
 
     .col1 {
@@ -66,21 +46,25 @@
   }
 
   .building {
-
+    .stateColor(#edde3f)
   }
 
   .passed {
-    background: linear-gradient(to right, #39aa56 0, #39aa56 10px, @body-bg 10px, @body-bg 100%) no-repeat;
-    .state {
-      color: #39aa56;
-    }
+    .stateColor(#39aa56);
   }
 
   .failed {
-
+    .stateColor(#db4545);
   }
 
   .cancelled {
+    .stateColor(#9d9d9d);
+  }
 
+  .stateColor(@state-color) {
+    background: linear-gradient(to right, @state-color 0, @state-color 10px, @body-bg 10px, @body-bg 100%) no-repeat;
+    .state {
+      color: @state-color;
+    }
   }
 }

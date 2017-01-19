@@ -13,15 +13,24 @@ export default class DashboardTabPage extends Component {
   };
 
   render() {
+    const $title = this._createInstanceTitle('Application');
     return (
       <div className="dashboard">
         <Card
-          title="Application instances"
+          className="instances-card"
+          title={$title}
           extra={<DropDownButton title={<span className="iconfont icon-dropdown" />} menu={['select all', 'delete all', 'detach all']} float="right" />}
         >
           <InstanceList instances={this.props.project.applicationInstances} />
         </Card>
       </div>
     );
+  }
+
+  _createInstanceTitle = (title) => {
+    return (<div className="instances-title">
+      <span className="h4">{title}</span>
+      <span className="instances-account">{`${this.props.project.applicationInstances.length} instances`}</span>
+    </div>);
   }
 }

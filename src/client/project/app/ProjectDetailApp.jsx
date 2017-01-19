@@ -34,7 +34,9 @@ export default class ProjectDetailApp extends Component {
    */
   async componentWillMount() {
     this.setState({
-      project: ProjectService.getCurrentProject()
+      project: ProjectService.getCurrentProject(),
+      buildHistory: await ProjectService
+                      .getBuildsOfPrjoject(this.props.params.username, this.props.params.path)
     });
   }
 
@@ -61,7 +63,12 @@ export default class ProjectDetailApp extends Component {
           </div>
         </div>
         <div className="project-content">
-          <ProjectTab project={this.state.project} tabs={tabs} page={this.props.children} />
+          <ProjectTab
+            project={this.state.project}
+            buildHistory={this.state.buildHistory}
+            tabs={tabs}
+            page={this.props.children}
+          />
         </div>
       </div>
     );

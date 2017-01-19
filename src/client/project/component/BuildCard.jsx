@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class BuildCard extends Component {
+  static propTypes = {
+    build: PropTypes.object.isRequired
+  };
+
   render() {
     return (<div className="build-card passed">
       <div className="two-line col1">

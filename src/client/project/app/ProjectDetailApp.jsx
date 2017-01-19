@@ -24,7 +24,11 @@ export default class ProjectDetailApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      project: null
+      project: {
+        applicationInstances: [],
+        serviceInstances: []
+      },
+      buildHistory: null
     };
   }
 
@@ -33,10 +37,11 @@ export default class ProjectDetailApp extends Component {
    * Because it will trigger a second render() call and can lead to layout thrashing.
    */
   async componentWillMount() {
+    const project = ProjectService.getCurrentProject();
+    const buildHistory = await ProjectService.getBuildsOfPrjoject(this.props.params.username, this.props.params.path)
     this.setState({
-      project: ProjectService.getCurrentProject(),
-      buildHistory: await ProjectService
-                      .getBuildsOfPrjoject(this.props.params.username, this.props.params.path)
+      project,
+      buildHistory
     });
   }
 

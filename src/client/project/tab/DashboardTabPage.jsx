@@ -12,13 +12,6 @@ export default class DashboardTabPage extends Component {
     }).isRequired
   };
 
-  static defaultProps = {
-    project: {
-      applicationInstances: [],
-      serviceInstances: []
-    }
-  };
-
   render() {
     return (
       <div className="dashboard">

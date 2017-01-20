@@ -33,23 +33,38 @@ module.exports = {
     contentBase: path.resolve('../dist/assets')
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['babel-loader']
+        loader: 'babel-loader'
       },
       {
         test: /\.css/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader'
+        })
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          use: [
+            'css-loader',
+            'less-loader'
+          ]
+        })
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          use: [
+            'css-loader',
+            'sass-loader'
+          ]
+        })
       },
       {
         test: /\.(png|jpg)$/,
@@ -60,7 +75,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({
       filename: './css/[name].min.css'
-    })
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'

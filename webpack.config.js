@@ -16,7 +16,7 @@ module.exports = {
     'project-detail-app': ['./project/app/ProjectDetailApp.jsx', './project/res/index.less']
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       bootstrap: path.resolve('./node_modules/bootstrap'),
       joi: 'joi-browser',

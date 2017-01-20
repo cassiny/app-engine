@@ -20,35 +20,6 @@ export default class DropdownButton extends Component {
     open: false
   };
 
-  render() {
-    return (
-      <div className={classnames(this.props.className, 'dropdown-button', { open: this.state.open})}>
-        <a
-          className="btn btn-link dropdown-toggle"
-          onClick={this.handleClick}
-        >
-          {this.props.title}
-          <span className="caret" />
-        </a>
-        <ul className="dropdown-menu">
-          {this.props.menu.map(this.renderMenuItem)}
-        </ul>
-      </div>
-    );
-  }
-
-  renderMenuItem = (item, index) => {
-    return (
-      <li
-        key={`menu-item-${index}`}
-        data-index={index}
-        className="menu-item list-group-item"
-        onClick={this.handleMenuItemClick}
-      >
-        {item}
-      </li>
-    );
-  }
 
   handleClick = () => {
     this.setState({
@@ -64,5 +35,35 @@ export default class DropdownButton extends Component {
     this.setState({
       open: false
     });
+  }
+
+  renderMenuItem = (item, index) => {
+    return (
+      <li
+        key={`menu-item-${index}`}
+        data-index={index}
+        className="menu-item list-group-item"
+        onClick={this.handleMenuItemClick}
+      >
+        {item}
+      </li>
+    );
+  }
+
+  render() {
+    return (
+      <div className={classnames(this.props.className, 'dropdown-button', { open: this.state.open })}>
+        <a
+          className="btn btn-link dropdown-toggle"
+          onClick={this.handleClick}
+        >
+          {this.props.title}
+          <span className="caret" />
+        </a>
+        <ul className="dropdown-menu">
+          {this.props.menu.map(this.renderMenuItem)}
+        </ul>
+      </div>
+    );
   }
 }

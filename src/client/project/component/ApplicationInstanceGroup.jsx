@@ -10,7 +10,6 @@ const stateMap = {
 
 export default class Card extends Component {
   static propTypes = {
-    className: PropTypes.string,
     instances: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       state: PropTypes.number,
@@ -22,9 +21,20 @@ export default class Card extends Component {
     })).isRequired,
   };
 
-  static defaultProps = {
-    className: ''
-  };
+  renderInstance = (instance) => {
+    const className = `instance-list-item col-md-9 offset-md-1 ${stateMap[instance.state]}`;
+    return (
+      <div className={className} key={instance.name}>
+        <div className="info-group col-md-5">
+          <a className="name">{instance.name}</a>
+          <a className="address">{`${instance.host}:${instance.port}`}</a>
+        </div>
+        <span className="state col-md-4">{stateMap[instance.state]}</span>
+        <span className="build col-md-3">{`build#${instance.build.revision}`}</span>
+        <button type="button" className="btn btn-default col-md-1">Start</button>
+      </div>
+    );
+  }
 
   render() {
     const instanceCount = this.props.instances.length;
@@ -45,21 +55,6 @@ export default class Card extends Component {
             {this.props.instances.map(this.renderInstance)}
           </div>
         </div>
-      </div>
-    );
-  }
-
-  renderInstance = (instance) => {
-    const className = `instance-list-item col-md-9 offset-md-1 ${stateMap[instance.state]}`;
-    return (
-      <div className={className} key={instance.name}>
-        <div className="info-group col-md-5">
-          <a className="name">{instance.name}</a>
-          <a className="address">{`${instance.host}:${instance.port}`}</a>
-        </div>
-        <span className="state col-md-4">{stateMap[instance.state]}</span>
-        <span className="build col-md-3">{`build#${instance.build.revision}`}</span>
-        <button type="button" className="btn btn-default col-md-1">Start</button>
       </div>
     );
   }

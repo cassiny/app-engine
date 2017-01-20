@@ -15,6 +15,14 @@ export default class ProjectTab extends Component {
     page: null,
   };
 
+  renderTab = (tab) => {
+    return (
+      <li key={tab.path} className={tab.isActive ? 'active' : null} role="presentation">
+        <Link to={tab.path}>{tab.name}</Link>
+      </li>
+    );
+  }
+
   render() {
     const { tabs, ...other } = this.props;
 
@@ -33,14 +41,6 @@ export default class ProjectTab extends Component {
           </div>
         </main>
       </div>
-    );
-  }
-
-  renderTab = (tab) => {
-    return (
-      <li key={tab.path} className={tab.isActive ? 'active' : null} role="presentation">
-        <Link to={tab.path}>{tab.name}</Link>
-      </li>
     );
   }
 }

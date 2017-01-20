@@ -37,11 +37,10 @@ export default class ProjectDetailApp extends Component {
    * Because it will trigger a second render() call and can lead to layout thrashing.
    */
   async componentWillMount() {
-    const project = ProjectService.getCurrentProject();
-    const buildHistory = await ProjectService.getBuildsOfPrjoject(this.props.params.username, this.props.params.path)
+    const { username, path } = this.props.params;
     this.setState({
-      project,
-      buildHistory
+      project: ProjectService.getCurrentProject(),
+      buildHistory: await ProjectService.getBuildsOfPrjoject(username, path)
     });
   }
 

@@ -1,2 +1,8 @@
 import './../src/server/app';
-import './basic/dataPreparation';
+import data from './basic/dataPreparation';
+
+describe('Test', () => {
+  it('should be to prepare data', async () => {
+    await data();
+  });
+});

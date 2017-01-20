@@ -16,12 +16,12 @@ module.exports = {
     'project-detail-app': ['./project/app/ProjectDetailApp.jsx', './project/res/index.less']
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       bootstrap: path.resolve('./node_modules/bootstrap'),
       joi: 'joi-browser',
       common: path.resolve('./src/client/common'),
-      'variables.less': path.resolve('./src/client/common/res/variables.less')
+      'variables.less$': path.resolve('./src/client/common/res/variables.less')
     }
   },
   output: {
@@ -33,23 +33,32 @@ module.exports = {
     contentBase: path.resolve('../dist/assets')
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['babel-loader']
+        loader: 'babel-loader'
       },
       {
         test: /\.css/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader'
+        })
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader', 'less-loader']
+        })
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /\.(png|jpg)$/,
@@ -58,7 +67,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('./css/[name].min.css'),
+    new ExtractTextPlugin({
+      filename: './css/[name].min.css'
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'

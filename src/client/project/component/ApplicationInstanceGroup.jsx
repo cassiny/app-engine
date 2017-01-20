@@ -1,12 +1,16 @@
+import classnames from 'classnames';
 import React, { Component, PropTypes } from 'react';
+
+import DropDownButton from '../component/DropDownButton';
 
 const stateMap = {
   0: 'Stopped',
   10: 'Stopping'
 };
 
-export default class InstanceList extends Component {
+export default class Card extends Component {
   static propTypes = {
+    className: PropTypes.string,
     instances: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       state: PropTypes.number,
@@ -15,14 +19,30 @@ export default class InstanceList extends Component {
       build: PropTypes.shape({
         revision: PropTypes.number
       })
-    })).isRequired
+    })).isRequired,
+  };
+
+  static defaultProps = {
+    className: ''
   };
 
   render() {
-    const { instances } = this.props;
     return (
-      <div className="instance-list">
-        {instances.map(this.renderInstance)}
+      <div className={classnames('instance-group', 'panel', 'panel-default')}>
+        <div className="instance-group-header panel-heading">
+          <div className="title panel-title">
+            <span className="h4">Application</span>
+            <span className="instances-account">{`${this.props.instances.length} instances`}</span>
+          </div>
+          <div className="extra panel-title">
+            <DropDownButton className="pull-right" title="Operations" menu={['Stop all', 'Start all', 'Restart all']} />
+          </div>
+        </div>
+        <div className="instance-group-body panel-body">
+          <div className="instance-list">
+            {this.props.instances.map(this.renderInstance)}
+          </div>
+        </div>
       </div>
     );
   }

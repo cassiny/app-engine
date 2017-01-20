@@ -4,21 +4,16 @@ import React, { Component, PropTypes } from 'react';
 export default class DropdownButton extends Component {
   static propTypes = {
     className: PropTypes.string,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-    menu: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.string),
-      PropTypes.arrayOf(PropTypes.element)
-    ]).isRequired,
+    title: PropTypes.string.isRequired,
+    menu: PropTypes.arrayOf(PropTypes.string),
     handleClick: PropTypes.func,
-    float: PropTypes.string
   };
 
   static defaultProps = {
     className: '',
     title: '',
-    menu: null,
-    handleClick: null,
-    float: 'left'
+    menu: [],
+    handleClick: () => {},
   };
 
   state = {
@@ -26,17 +21,13 @@ export default class DropdownButton extends Component {
   };
 
   render() {
-    const className = classnames(this.props.className, 'dropdown', 'app-engine-dropdown-button', {
-      open: this.state.open,
-      'pull-right': this.props.float === 'right'
-    })
     return (
-      <div className={className}>
+      <div className={classnames(this.props.className, 'dropdown-button', { open: this.state.open})}>
         <a
           className="btn btn-link dropdown-toggle"
           role="button"
           onClick={this.handleClick}
-          >
+        >
           Operations
           <span className="caret" />
         </a>
@@ -71,6 +62,8 @@ export default class DropdownButton extends Component {
     if (this.props.handleClick) {
       this.props.handleClick(index);
     }
-    this._handleClick();
+    this.setState({
+      open: false
+    });
   }
 }

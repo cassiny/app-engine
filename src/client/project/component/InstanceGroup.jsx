@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 
 export default class Card extends Component {
@@ -9,7 +10,6 @@ export default class Card extends Component {
   };
 
   static defaultProps = {
-    className: '',
     title: '',
     extra: null,
     children: null,
@@ -17,17 +17,18 @@ export default class Card extends Component {
   };
 
   render() {
+    const { className, extra, children, title } = this.props;
     return (
       <div
-        className={`app-engine-card panel panel-default ${this.props.className}`}
+        className={classnames(this.props.className, 'instance-group', 'panel', 'panel-default')}
       >
-        <div className="card-header panel-heading">
-          <div className="card-title panel-title">
+        <div className="instance-group-header panel-heading">
+          <div className="title panel-title">
             {this.props.title}
           </div>
-          <div className="card-extra panel-title">{this.props.extra}</div>
+          <div className="extra panel-title">{this.props.extra}</div>
         </div>
-        <div className="card-body panel-body">{this.props.children}</div>
+        <div className="instance-group-body panel-body">{this.props.children}</div>
       </div>);
   }
 }

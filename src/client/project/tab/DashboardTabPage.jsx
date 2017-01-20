@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Card from '../component/Card';
+import InstanceGroup from '../component/InstanceGroup';
 import DropDownButton from '../component/DropDownButton';
 import InstanceList from '../component/InstanceList';
 
@@ -13,21 +13,18 @@ export default class DashboardTabPage extends Component {
   };
 
   render() {
-    const $title = this._createInstanceTitle('Application');
+    const title = this.renderInstanceTitle('Application');
+    const dropdown = <DropDownButton title={<span className="iconfont icon-dropdown" />} menu={['select all', 'delete all', 'detach all']} float="right" />;
     return (
       <div className="dashboard">
-        <Card
-          className="instances-card"
-          title={$title}
-          extra={<DropDownButton title={<span className="iconfont icon-dropdown" />} menu={['select all', 'delete all', 'detach all']} float="right" />}
-        >
+        <InstanceGroup title={title} extra={dropdown}>
           <InstanceList instances={this.props.project.applicationInstances} />
-        </Card>
+        </InstanceGroup>
       </div>
     );
   }
 
-  _createInstanceTitle = (title) => {
+  renderInstanceTitle = (title) => {
     return (<div className="instances-title">
       <span className="h4">{title}</span>
       <span className="instances-account">{`${this.props.project.applicationInstances.length} instances`}</span>

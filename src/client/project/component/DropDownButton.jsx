@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+import React, { Component, PropTypes } from 'react';
 
 export default class DropdownButton extends Component {
   static propTypes = {
@@ -7,7 +7,8 @@ export default class DropdownButton extends Component {
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     menu: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.string),
-      PropTypes.arrayOf(PropTypes.element)]).isRequired,
+      PropTypes.arrayOf(PropTypes.element)
+    ]).isRequired,
     handleClick: PropTypes.func,
     float: PropTypes.string
   };
@@ -25,41 +26,47 @@ export default class DropdownButton extends Component {
   };
 
   render() {
-    const menu = this.props.menu.map(this._createMenuItem);
-    return (<div className={`${this._getStyleClass()} ${this.state.open ? 'open' : ''} `}>
-      <button className="btn btn-link" onClick={this._handleClick}>{this.props.title}</button>
-      <ul className="dropdown-menu">{menu}</ul>
-    </div>);
+    const className = classnames(this.props.className, 'dropdown', 'app-engine-dropdown-button', {
+      open: this.state.open,
+      'pull-right': this.props.float === 'right'
+    })
+    return (
+      <div className={className}>
+        <a
+          className="btn btn-link dropdown-toggle"
+          role="button"
+          onClick={this.handleClick}
+          >
+          Operations
+          <span className="caret" />
+        </a>
+        <ul className="dropdown-menu">
+          {this.props.menu.map(this.renderMenuItem)}
+        </ul>
+      </div>
+    );
   }
 
-  _createMenuItem = (item, index) => {
+  renderMenuItem = (item, index) => {
     return (
       <li
         key={`menu-item-${index}`}
         data-index={index}
         className="menu-item list-group-item"
-        onClick={this._handleItemClick}
+        onClick={this.handleMenuItemClick}
       >
         {item}
       </li>
     );
   }
 
-  _getStyleClass = () => {
-    return classnames(this.props.className, {
-      'app-engine-dropdown-button': true,
-      dropdown: true,
-      'pull-right': this.props.float === 'right'
-    });
-  }
-
-  _handleClick = () => {
+  handleClick = () => {
     this.setState({
       open: !this.state.open
     });
   }
 
-  _handleItemClick = (e) => {
+  handleMenuItemClick = (e) => {
     const index = e.currentTarget.dataset.index;
     if (this.props.handleClick) {
       this.props.handleClick(index);

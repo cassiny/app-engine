@@ -1,6 +1,29 @@
 .dashboard {
-  > .instances-card {
+
+  .instance-group {
     margin-top: 30px;
+
+    .instance-group-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .dropdown-button {
+        > .dropdown-menu {
+          margin: 0;
+          padding: 0;
+
+          > .menu-item:hover {
+            background-color: rgb(224,224,224);
+          }
+        }
+      }
+    }
+
+    .instance-group-body {
+      padding: 0;
+    }
 
     .instances-title {
       > .instances-account {

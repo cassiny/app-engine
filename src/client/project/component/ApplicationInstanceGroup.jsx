@@ -27,12 +27,14 @@ export default class Card extends Component {
   };
 
   render() {
+    const instanceCount = this.props.instances.length;
+    const states = instanceCount <= 1 ? `${instanceCount} instance` : `${instanceCount} instances`;
     return (
       <div className={classnames('instance-group', 'panel', 'panel-default')}>
         <div className="instance-group-header panel-heading">
           <div className="title panel-title">
-            <span className="h4">Application</span>
-            <span className="instances-account">{`${this.props.instances.length} instances`}</span>
+            <span className="h4 title">Application</span>
+            <span className="states">{states}</span>
           </div>
           <div className="extra panel-title">
             <DropDownButton className="pull-right" title="Operations" menu={['Stop all', 'Start all', 'Restart all']} />

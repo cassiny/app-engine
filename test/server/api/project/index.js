@@ -3,7 +3,7 @@ import Project from './../../../../src/lib/project/model/Project';
 import actions from './../../../basic/defaultActions';
 
 const username = 'admin';
-const projectPath = 'example';
+const projectPath = 'example-test';
 
 describe('POST /api/project', () => {
   before(actions.all(

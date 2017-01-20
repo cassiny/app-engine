@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import Joi from 'joi';
 
+import applicationInstanceSchema from './ApplicationInstance';
+import serviceInstanceSchema from './ServiceInstance';
+import InstancesState from './InstanceState';
+
 const Schema = mongoose.Schema;
 
 const projectSchema = new mongoose.Schema({
@@ -25,16 +29,15 @@ const projectSchema = new mongoose.Schema({
     branch: { type: String, default: 'master' },
   },
 
-  // TODO: Ref to image
-  baseImage: { },
+  baseImage: { type: mongoose.Schema.Types.ObjectId, ref: 'image' },
 
   createTime: { type: Date, default: Date.now },
   lastModifyTime: { type: Date, default: Date.now },
   // TODO: Build Schema
   lastBuild: { },
 
-  applicationInstances: { },
-  serviceInstance: { },
+  applicationInstances: [applicationInstanceSchema],
+  serviceInstances: [serviceInstanceSchema],
 }, {
   collection: 'project',
 });
@@ -93,6 +96,7 @@ projectSchema.statics.existProject = async function existProject(userId, path) {
   return project !== null;
 };
 
+// export instances state
+projectSchema.statics.InstancesState = InstancesState;
+
 export default mongoose.model('Project', projectSchema);
-
-

@@ -2,7 +2,7 @@ import agent from './../agent';
 import actions from './../../basic/defaultActions';
 
 const username = 'admin';
-const projectPath = 'example';
+const projectPath = 'example-test';
 
 const url = `/project/${username}`;
 

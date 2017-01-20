@@ -25,10 +25,9 @@ export default class DropdownButton extends Component {
       <div className={classnames(this.props.className, 'dropdown-button', { open: this.state.open})}>
         <a
           className="btn btn-link dropdown-toggle"
-          role="button"
           onClick={this.handleClick}
         >
-          Operations
+          {this.props.title}
           <span className="caret" />
         </a>
         <ul className="dropdown-menu">

@@ -159,12 +159,18 @@ const buildTestData = async () => {
     }
   });
   await build3.save();
+
+
+  logger.info('prepare test data... done');
 };
 
-try {
-  (async () => buildTestData())();
-} catch (err) {
-  logger.error(err);
-}
 
-export default data;
+export default async () => {
+  try {
+    logger.info('prepare test data...');
+    await buildTestData();
+  } catch (err) {
+    logger.error(err);
+  }
+  return data;
+};

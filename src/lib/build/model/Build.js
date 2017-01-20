@@ -36,9 +36,9 @@ buildSchema.statics.getBuildRecordsByPath =
     return this
     .find({ hidden: true })
     .populate({
-      path: 'project',
+      path: 'Project',
       match: {
-        path: projectPath,
+        // path: projectPath,
         owner: userId,
       }
     })

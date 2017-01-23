@@ -20,7 +20,6 @@ export default class DropdownButton extends Component {
     open: false
   };
 
-
   handleClick = () => {
     this.setState({
       open: !this.state.open

@@ -8,29 +8,44 @@
   color: @app-font-color;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
 .project-header {
   background: @breadcrumb-bg;
 }
 
-.project-crumb {
-  font-size: @font-size-h3;
-  margin: 12px 0;
-
-  .breadcrumb-item.active {
-    font-weight: bold;
-  }
-}
-
-.project-tab {
-  nav {
-    background: @breadcrumb-bg;
+.project-detail-app {
+  .project-header {
+    background: @app-breadcrumb-bg;
   }
 
-  .nav-tabs {
-    border-bottom: none;
+  .project-crumb {
+    background: @app-breadcrumb-bg;
+    font-size: @font-size-h3;
+    margin: 12px 0;
+    padding-left: 0;
+    padding-right: 0;
 
-    a:hover {
+    .breadcrumb-item {
+      &.active {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .project-tab {
+    nav {
+      background: @app-breadcrumb-bg;
+    }
+
+    .nav-tabs {
       border-bottom: none;
+
+      a:hover {
+        border-bottom: none;
+      }
     }
   }
 }
